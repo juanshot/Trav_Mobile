@@ -1,0 +1,107 @@
+<ion-header>
+
+   <ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+    <div>
+      <div class="title">
+             AlertTraveler
+      </div>
+        
+  <div class="subtitle">My Alerts</div>
+         <div class="clear"></div>
+         
+    </div>
+  </ion-title>
+  <ion-buttons end>
+    
+  </ion-buttons>
+</ion-toolbar>
+
+
+</ion-header>
+
+<ion-content class="list-mini-content">
+ 
+  <div class="list-mini">
+    <ion-list>
+      <div  class="list-item" ion-item *ngFor="let alert of alerts ">
+
+        <ion-item-divider> <h3 class="item-title">{{alert.alert.incident_type}} </h3> <ion-note item-right> {{alert.alert.alert_timestamp.substring(0,16)+" "+"UTC"  }}  </ion-note> </ion-item-divider>
+        <ion-row (click)="goToDetail(alert.alert.alert_id)" no-padding class="content-row one-line">
+         
+          <ion-col no-padding width-18 class="item-avatar severity">
+
+
+            <div class="severity-wrap" *ngIf="alert.alert.severities[0] == 'minimal' ">
+                   <img  class="avatar-image"  src="assets/images/alert-green.png"/>
+                   <span class="severity low">Minimal</span>
+            </div >
+
+            <div class="severity-wrap" *ngIf="alert.alert.severities[0] == 'low' ">
+                   <img   class="avatar-image"  src="assets/images/alert-yellow.png"/>
+                   <span class="severity low">Low </span>
+            </div >
+
+            <div class="severity-wrap" *ngIf="alert.alert.severities[0] == 'medium' ">
+                 <preload-image   class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-orange.png"></preload-image>
+                  <span class="severity medium">Medium </span>
+            </div>
+
+
+            <div class="severity-wrap" *ngIf="alert.alert.severities[0] == 'high' " >
+                    <preload-image   class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-red-orange.png"></preload-image>
+                    <span class="severity medium">High </span>
+
+            </div>
+
+            <div class="severity-wrap" *ngIf="alert.alert.severities[0] == 'extreme' ">
+                   <preload-image *ngIf="alert.alert.severities[0] == 'extreme' "  class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-red.png"></preload-image>
+                   <span class="severity medium">Extreme </span>
+            </div>
+           
+            
+             
+            
+          </ion-col>
+          
+
+
+
+          <ion-col no-padding width-62 class="item-content" >
+
+            
+ 
+            
+            <p  class="item-description ">  <ion-item class="item-description" text-wrap>{{alert.alert.incident_headline}}  </ion-item>
+          </ion-col>
+           <ion-col no-padding width-10 class="item-icon">
+            
+            <ion-icon name="arrow-forward"></ion-icon>
+
+          </ion-col>
+        </ion-row>
+        
+        <ion-row no-padding class="content-row checkin">
+
+           <ion-col class="checkin" no-padding width-100>
+
+             <div *ngIf="alert.needCheckin">
+                  <div *ngIf="alert.checkin.checkin_status=='PENDING'"  class="checkin"><button  ion-button color="secondary" round outline (click)="goToCheckin(alert.alert,alert.tdsalert,alert.checkin)" >Check-In</button></div>
+                  <div *ngIf=" alert.checkin.checkin_status=='OK'"  class="checkin"><button (click)="goToCheckin(alert.alert,alert.tdsalert,alert.checkin)"   ion-button icon-left color="secondary" clear ><ion-icon name="md-checkmark"></ion-icon>I'm Safe</button></div>
+                  <div *ngIf=" alert.checkin.checkin_status=='HELP' "  class="checkin"><button (click)="goToCheckin(alert.alert,alert.tdsalert,alert.checkin)"   ion-button icon-left color="high" clear ><ion-icon name="md-alert"></ion-icon>Need Help</button></div>                   
+             </div>
+             
+            
+          </ion-col>
+
+    
+          
+        </ion-row>
+      </div>
+       
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,137 @@
+ <ion-header>
+
+    <ion-navbar>
+      <ion-title>
+            <div>
+                  <div class="title">
+                        AlertTraveler
+                  </div>
+                  
+            <div class="subtitle">{{name}}</div>
+                  <div class="clear"></div>
+                  
+            </div>
+      </ion-title>
+   
+    </ion-navbar>
+
+    </ion-header>
+
+  <ion-content class="options-content">
+
+        <ion-list class="option-list">
+                        
+                        <ion-item class="list-item">
+                              <ion-thumbnail item-left>
+                                <img  src="{{flag}}" alt="">
+                              </ion-thumbnail>
+                             <div class="title">{{name}}</div> 
+                        </ion-item> 
+
+                         
+            
+                  
+                  </ion-list>
+                 
+  <div *ngIf="registered == false">
+                  <ion-item-divider >ALERTS PREFERENCES  </ion-item-divider>
+                  
+                
+
+                         <ion-row class="options-row row-header">
+                        <ion-col> Severity </ion-col><ion-col>Alert me</ion-col><ion-col>Email me</ion-col>
+                  </ion-row>
+
+                  <ion-row class="options-row" >
+                        <ion-col> Extreme </ion-col> <ion-col><ion-checkbox   [(ngModel)]="pushExtreme"></ion-checkbox></ion-col><ion-col><ion-checkbox  [(ngModel)]="emailExtreme" ></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                       <ion-col> High </ion-col><ion-col><ion-checkbox  [(ngModel)]="pushHigh"></ion-checkbox></ion-col><ion-col><ion-checkbox  [(ngModel)]="emailHigh" ></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                        <ion-col> Medium </ion-col><ion-col><ion-checkbox [(ngModel)]="pushMedium"  ></ion-checkbox></ion-col><ion-col><ion-checkbox [(ngModel)]="emailMedium"  ></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                        <ion-col> Low </ion-col><ion-col><ion-checkbox [(ngModel)]="pushLow"  ></ion-checkbox></ion-col><ion-col><ion-checkbox [(ngModel)]="emailLow"  ></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                        <ion-col> Minimal </ion-col><ion-col><ion-checkbox [(ngModel)]="pushMinimal"  ></ion-checkbox></ion-col><ion-col><ion-checkbox [(ngModel)]="emailMinimal" ></ion-checkbox></ion-col>
+                  </ion-row>
+
+                 
+
+                 
+                  <ion-item-divider > CATEGORIES  </ion-item-divider>
+                  
+                  
+
+                  <ion-list class="option-list">
+                        
+                        <ion-item class="list-item" (click)=showCategoriesAlert() >
+                              <ion-label>SELECT CATEGORIES  </ion-label>
+                              <ion-icon name="ios-arrow-forward-outline" color="primary" item-right></ion-icon>
+                        </ion-item> 
+
+
+                            
+                  
+                  </ion-list>
+
+                  </div>
+<div *ngIf="registered == true">
+                  <ion-item-divider (click)="changeSeverities()">ALERTS PREFERENCES  </ion-item-divider>
+                  
+                
+
+                         <ion-row class="options-row row-header">
+                        <ion-col> Severity </ion-col><ion-col>Alert me</ion-col><ion-col>Email me</ion-col>
+                  </ion-row>
+
+
+
+                  <ion-row class="options-row" >
+                        <ion-col> Extreme </ion-col> <ion-col><ion-checkbox   [(ngModel)]="pushExtreme"></ion-checkbox></ion-col><ion-col><ion-checkbox  [(ngModel)]="emailExtreme" ></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                       <ion-col> High </ion-col><ion-col><ion-checkbox  [(ngModel)]="pushHigh"></ion-checkbox></ion-col><ion-col><ion-checkbox  [(ngModel)]="emailHigh" ></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                        <ion-col> Medium </ion-col><ion-col><ion-checkbox [(ngModel)]="pushMedium"  ></ion-checkbox></ion-col><ion-col><ion-checkbox [(ngModel)]="emailMedium"  checked="false"></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                        <ion-col> Low </ion-col><ion-col><ion-checkbox [(ngModel)]="pushLow"  ></ion-checkbox></ion-col><ion-col><ion-checkbox [(ngModel)]="emailLow"  checked="false"></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row class="options-row">
+                        <ion-col> Minimal </ion-col><ion-col><ion-checkbox [(ngModel)]="pushMinimal"  ></ion-checkbox></ion-col><ion-col><ion-checkbox [(ngModel)]="emailMinimal"  checked="false"></ion-checkbox></ion-col>
+                  </ion-row>
+
+                 
+
+                 
+                  <ion-item-divider (click)="changeCategories()"> CATEGORIES  </ion-item-divider>
+                  
+                  
+
+                  <ion-list class="option-list">
+                        
+                        <ion-item class="list-item" (click)=showCategoriesAlert() >
+                              <ion-label>SELECT CATEGORIES  </ion-label>
+                              <ion-icon name="ios-arrow-forward-outline" color="primary" item-right></ion-icon>
+                        </ion-item> 
+
+
+                            
+                  
+                  </ion-list>
+
+                  </div>
+
+                  <ion-row>
+                                 <ion-col> <button (click)="saveSubscription()" ion-button full > Submit  </button></ion-col>
+                  </ion-row>
+
+           
+
+        
+    
+  </ion-content>

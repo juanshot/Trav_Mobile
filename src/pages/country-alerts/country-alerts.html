@@ -1,0 +1,73 @@
+<ion-header>
+
+<ion-navbar>
+    <ion-title>
+
+      <div class="title">
+            Country Intelligence
+      </div>
+        
+  <div class="subtitle">Alerts  
+
+ </div>
+         <div class="clear"></div>
+         
+  </ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content class="list-mini-content">
+ 
+  <div class="list-mini">
+    <ion-list>
+      <div  class="list-item" ion-item *ngFor="let alert of alerts">
+        <ion-item-divider> <h3 class="item-title">{{alert.incident_type}}</h3> <ion-note item-right> {{alert.alert_timestamp.substring(0,16)+" "+"UTC"  }} </ion-note> </ion-item-divider>
+        <ion-row (click)="goToDetail(alert.alert_id)" no-padding class="content-row one-line">
+         
+          <ion-col no-padding width-18 class="item-avatar">
+
+            <div class="severity-wrap" *ngIf="alert.severities[0] == 'minimal'">
+             <preload-image  class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-green.png"></preload-image>      
+             <span class="severity low"> Minimal </span>
+          </div>
+
+           <div class="severity-wrap" *ngIf="alert.severities[0] == 'low'">
+             <preload-image  class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-yellow.png"></preload-image>      
+             <span class="severity low"> Low </span>
+          </div>
+
+          <div class="severity-wrap" *ngIf="alert.severities[0] == 'medium'">
+             <preload-image  class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-orange.png"></preload-image>      
+             <span class="severity low"> Medium </span>
+          </div>
+
+          <div *ngIf="alert.severities[0] == 'high'">
+            <preload-image  class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-red-orange.png"></preload-image>
+            <span class="severity low"> High </span>
+          </div>
+          <div *ngIf="alert.severities[0] == 'extreme'">
+            <preload-image  class="avatar-image" [ratio]="{w:1, h:1}" src="assets/images/alert-red.png"></preload-image>
+            <span class="severity low"> Extreme </span>
+          </div>
+          
+           
+            
+           
+            
+          </ion-col>
+          <ion-col no-padding width-62 class="item-content">
+            
+            <p  class="item-description ">  <ion-item class="item-description" text-wrap>{{alert.incident_headline}}  </ion-item>
+          </ion-col>
+           <ion-col no-padding width-10 class="item-icon">
+            
+            <ion-icon name="arrow-forward"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </div>
+       
+    </ion-list>
+  </div>
+</ion-content>

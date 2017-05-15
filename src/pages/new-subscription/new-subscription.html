@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+        <ion-title>
+        <div>
+          <div class="title">
+                Country Intelligence
+          </div>
+            
+      <div class="subtitle">New Subscription</div>
+            <div class="clear"></div>
+            
+        </div>
+      </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="subscribing-content">
+  <ion-searchbar [(ngModel)]="searchTerm" (input)="getItems($event)" placeholder="country/city name" placeholder="Search"></ion-searchbar>
+
+  <ion-list class="result-list">
+    <div *ngFor="let country of countries ">
+      <ion-item class="list-item" >
+      <ion-thumbnail item-left>
+        <img  src="{{country.country_flag}}" alt="">
+      </ion-thumbnail>
+      <h2 class="item-title"  >{{country.country_name}}</h2>
+            <button (click)="showOptions(country)" ion-button outline item-right icon-right round> <ion-icon name="logo-rss" color="primary"></ion-icon> <span> Subscribe  </span> </button>
+         
+    
+    </ion-item>
+     <div *ngIf="country.city_count > 0">
+            <ion-item class="list-item city-item"   *ngFor="let city of country.cities">
+                  <ion-thumbnail item-left>
+                      <img  src="{{country.country_flag}}" alt="">
+                    </ion-thumbnail>
+                 <h2 class="item-title">{{city}}</h2>
+                <p class="city-title">({{country.country_name}})</p>
+                <button  (click)="goToSubscriptionC(country,city)" ion-button outline item-right icon-right round> <ion-icon name="logo-rss" color="primary"></ion-icon> <span> Subscribe  </span>  </button>
+             
+               
+        </ion-item>
+
+      </div>
+      
+    </div>
+    
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,116 @@
+<ion-header>
+
+<ion-navbar>
+      <ion-title>
+            <div>
+                  <div class="title">
+                        Country Intelligence
+                  </div>
+                  
+            <div class="subtitle">Check-In</div>
+                  <div class="clear"></div>
+                  
+            </div>
+      </ion-title>
+   
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="check-content">
+
+      
+  <div class="checkin-item">
+            <ion-card class="info-card">
+
+                              <ion-item text-wrap>
+                              <ion-avatar *ngIf="alert.severities != null" item-left>
+                                    
+                                    <img *ngIf="alert.severities[0] == 'minimal'" src="assets/images/alert-green.png">
+                                    <img *ngIf="alert.severities[0] == 'low'" src="assets/images/alert-yellow.png">
+                                    <img *ngIf="alert.severities[0] == 'medium'" src="assets/images/alert-orange.png">
+                                    <img *ngIf="alert.severities[0] == 'high'" src="assets/images/alert-red-orange.png">
+                                    <img *ngIf="alert.severities[0] == 'extreme'" src="assets/images/alert-red.png">
+
+
+                              </ion-avatar>
+                              <h2 *ngIf="tdsalert.incident_headline == undefined" text-wrap>{{tdsalert.title}}</h2>
+                              <h2 *ngIf="tdsalert.incident_headline != undefined" text-wrap>{{tdsalert.incident_headline}}</h2>
+                           </ion-item>
+                              <ion-card-content text-wrap>
+                              <p *ngIf="tdsalert.message != undefined" >{{tdsalert.message}}</p>
+                              <p *ngIf="tdsalert.body != undefined" >{{tdsalert.body}}</p>
+                              <p *ngIf="tdsalert.incident_description != undefined" >{{tdsalert.incident_description}}</p>
+                              
+                              
+                             
+                              </ion-card-content>
+
+                              <ion-row>
+                           
+                              <ion-col>
+                                    <button  *ngIf="this.alert.alert_id == undefined" (click)="goToDetail(tdsalert.additionalData.additionalData.alert_origin)" ion-button icon-left clear small>
+                                    <ion-icon name="eye"></ion-icon>
+                                    <div>See Details</div>
+                                    </button>
+
+                                    <button  *ngIf="this.alert.alert_id != undefined" (click)="goToDetail(alert.alert_id)" ion-button icon-left clear small>
+                                    <ion-icon name="eye"></ion-icon>
+                                    <div>See Details</div>
+                                    </button>
+                              </ion-col>
+                              <ion-col center text-center>
+                                  
+                              </ion-col>
+                              </ion-row>
+
+                              </ion-card>
+
+        <ion-card class="check-card">  
+      
+
+           <ion-card-content> 
+              <ion-segment class="segment" [(ngModel)]="option"> 
+                  <ion-segment-button  value="OK"> I'M SAFE <br/> <ion-icon name="md-checkmark-circle-outline"></ion-icon> </ion-segment-button>
+                  <ion-segment-button class="alert-red"  value="HELP">I NEED HELP <br/> <ion-icon name="alert"></ion-icon> </ion-segment-button>
+              </ion-segment>          
+            </ion-card-content>
+        </ion-card>
+                
+           <div [ngSwitch]="option">
+               
+                 <ion-card class="respond-card" *ngSwitchCase="'HELP'" >
+                          <ion-card-content>
+                           <div class="details-text">Add More Details:</div>
+                       <ion-item  >
+                          <ion-textarea [(ngModel)]="message" placeholder=""></ion-textarea>
+                          
+                        </ion-item>
+                           </ion-card-content>
+
+                 </ion-card>
+
+                 <ion-card class="respond-card" *ngSwitchCase="'OK'">
+                          <ion-card-content>                                
+                           <div class="details-text">Add More Details:</div>
+                        <ion-item  >
+                          <ion-textarea [(ngModel)]="message" placeholder=""></ion-textarea>
+                        </ion-item>
+                           </ion-card-content>
+
+                 </ion-card>
+
+
+             
+
+              </div>
+              <div class="button_parent">
+                  <button color="primary"  [disabled]="option == '' " (click)="saveCheckin()" ion-button round fab-center>Submit Check-in 
+                  </button>
+              </div>         
+                
+  </div>
+  
+
+</ion-content>

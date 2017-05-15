@@ -1,0 +1,414 @@
+<ion-header>
+
+  <ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title  *ngFor="let country of countries" text-wrap>
+    
+    <div>
+      <div class="title">
+             Country Intelligence
+      </div>
+        
+  <div class="subtitle">{{country.country_name}}</div>
+         <div class="clear"></div>
+         
+    </div>  
+  </ion-title>
+  
+  <ion-buttons end>   
+    <div (click)="openSearch()">
+        <ion-icon class="search-icon" name="search" color="light"></ion-icon>
+    </div>
+    
+    
+  </ion-buttons>
+
+</ion-toolbar>
+
+</ion-header>
+
+<ion-content class="country-content">
+  <div class="country-details" *ngFor="let country of countries">
+
+    <ion-row class="country-main-data-row">
+
+      <ion-col class="img-col" no-padding width-30>
+            
+               <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="country.flag" title="{{country.country_name}}"></preload-image>
+        
+      </ion-col>
+      <ion-col  no-padding width-70>
+          <ion-row  class="overview-row">
+                      <ion-col class="overview-col-image" width-50>
+                    <a (click)="openRiskDetail()">
+                      
+
+                            <img *ngIf="country.risk_rating == 'minimal' "  src="assets/images/alert-green.png">  
+                          <img *ngIf="country.risk_rating == 'low' "  src="assets/images/alert-yellow.png">
+                          <img *ngIf="country.risk_rating == 'medium' "  src="assets/images/alert-orange.png">
+                          <img *ngIf="country.risk_rating == 'high' "  src="assets/images/alert-red-orange.png">
+                            <img *ngIf="country.risk_rating == 'extreme' "  src="assets/images/alert-red.png">
+                 
+                       <div class="text-overview-col">{{country.risk_rating}}</div>  
+                    </a>
+                  </ion-col>
+                  <ion-col  width-50 class="overview-col-alert">
+                    <a (click)="goToAlerts(country)">
+                       <!--div class="number">
+                             <div class="circle-alert"> <span class="circle-alert-number">{{alertCount}}</span></div>
+                      </div-->
+                       <div class="number-d">
+                      <div class="number-circle"><span>{{alertCount}}</span></div>
+                       </div>        
+                           
+                  
+                      <div class="text-overview-col">
+                             Alerts<br/>
+                      </div>
+                       
+                  
+                    </a>
+                  </ion-col>
+
+            </ion-row>
+        
+        <ion-row class="country-action-row">
+          <ion-col no-padding width-50 class="country-action-col " >
+            
+             <button (click)="goToContacts(country)" ion-button icon-left small full class="contact-btn" >
+                 <ion-icon name="call"></ion-icon>
+                  Contacts
+            </button>
+            
+          </ion-col>
+          <ion-col  no-padding width-50 class="country-action-col" >
+            
+             <button (click)="goToSubscribe(country)"  ion-button  icon-left small full class="subs-btn"  >
+                 <ion-icon name="ios-radio-outline"></ion-icon>
+                  Subscribe
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+     <ion-row wrap class="user-bio-row">
+
+       <ion-col class="detail-tab" no-padding width-100>
+         
+            <ion-segment  [(ngModel)]="option">
+              <ion-segment-button icon-left value="overview">
+         
+                Overview
+              </ion-segment-button>
+              <ion-segment-button value="risk">
+               
+                Risk Details
+              </ion-segment-button>
+            </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <div class="user-bio-row"> 
+        <div  [ngSwitch]="option">
+          <div *ngSwitchCase="'overview'">
+             
+                    
+                    <div  [ngClass]="isItemShown(item) ? 'country-expand active' : 'country-expand inactive'">
+                      <ion-card class="risk-card">  
+
+                          <p   [innerHtml]="country.categories[0].category_sections[0].section_text" class="user-description section_text"></p>
+                        
+                      </ion-card>
+                    
+                      </div>
+                      <div (click)="toggleItem(item)" class="country-expand-footer">
+                        <i [ngClass]="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+                        {{ isItemShown(item) ? '  Less' : 'Read More ' }}
+                      </div> 
+                 
+      
+
+            
+
+            
+
+            
+
+            
+          </div>
+          <div *ngSwitchCase="'risk'">
+                <div class="center-card">
+                  <div *ngIf="showRiskDetail">
+                      <ion-item text-wrap item-left  *ngFor=" let risk_detail of country.risk_details  | slice:1:9; ">
+                       <ion-row>
+                          <ion-col width-20 class="item-avatar severity">
+                                <img *ngIf="risk_detail.level == 'minimal' "  src="assets/images/alert-green.png">
+                                <img *ngIf="risk_detail.level == 'low' "  src="assets/images/alert-yellow.png">
+                                <img *ngIf="risk_detail.level == 'medium' "  src="assets/images/alert-orange.png">
+                                <img *ngIf="risk_detail.level == 'high' "  src="assets/images/alert-red-orange.png">                          
+                                 <img *ngIf="risk_detail.level == 'extreme' "  src="assets/images/alert-red.png">                          
+
+                            <div class="risk-text">
+                                  {{risk_detail.level}}
+                            </div>
+                        </ion-col>
+                        <ion-col width-80>
+                             <!--Ugly, another way? LM-->
+                              <h2 >{{risk_detail.name}}</h2>                            
+                            <!--h2 *ngIf="risk_detail.name!='Infrastructure'" >{{risk_detail.name}}</h2>                            
+                            <h2 *ngIf="risk_detail.name=='Infrastructure'" >Infrastruc<br>ture</h2-->
+                            <!--Ugly-->
+                              <p>{{risk_detail.text}} </p>
+                          
+                        </ion-col>
+
+                       </ion-row>
+                       
+                            
+                          
+                          </ion-item>
+
+                    </div>
+                    <div *ngIf="!showRiskDetail">
+
+                      <div class="preview-item" text-wrap item-left >
+                       <ion-row no-line >
+                         <ion-col  *ngFor=" let risk_detail of country.risk_details  | slice:1:3; " width-50>
+                           <ion-list no-padding no-line>
+                              <ion-item>
+                                <ion-avatar item-right>
+                                  <img *ngIf="risk_detail.level == 'minimal' "  src="assets/images/alert-green.png">
+                                  <img *ngIf="risk_detail.level == 'low' "  src="assets/images/alert-yellow.png">
+                                  <img *ngIf="risk_detail.level == 'medium' "  src="assets/images/alert-orange.png">
+                                  <img *ngIf="risk_detail.level == 'high' "  src="assets/images/alert-red-orange.png">
+                                  <img *ngIf="risk_detail.level == 'extreme' "  src="assets/images/alert-red.png">
+                                  
+                                </ion-avatar>
+                                <h2>{{risk_detail.name}}</h2>
+                                <p>{{risk_detail.level}}</p>
+                              </ion-item>
+                            </ion-list>
+                         
+
+                         </ion-col>        
+
+                       </ion-row>
+                       <ion-row no-line >
+                         <ion-col  *ngFor=" let risk_detail of country.risk_details  | slice:3:5; " width-50>
+                           <ion-list no-padding no-line>
+                              <ion-item>
+                                <ion-avatar item-right>
+                                  <img *ngIf="risk_detail.level == 'minimal' "  src="assets/images/alert-green.png">
+                                  <img *ngIf="risk_detail.level == 'low' "  src="assets/images/alert-yellow.png">
+                                  <img *ngIf="risk_detail.level == 'medium' "  src="assets/images/alert-orange.png">
+                                  <img *ngIf="risk_detail.level == 'high' "  src="assets/images/alert-red-orange.png">
+                                  <img *ngIf="risk_detail.level == 'extreme' "  src="assets/images/alert-red.png">
+                                  
+                                </ion-avatar>
+                                <h2>{{risk_detail.name}}</h2>
+                                <p>{{risk_detail.level}}</p>
+                              </ion-item>
+                            </ion-list>
+                         
+
+                         </ion-col>        
+
+                       </ion-row>
+                       <ion-row no-line >
+                         <ion-col  *ngFor=" let risk_detail of country.risk_details  | slice:5:7; " width-50>
+                           <ion-list no-padding no-line>
+                              <ion-item>
+                                <ion-avatar item-right>
+                                  <img *ngIf="risk_detail.level == 'minimal' "  src="assets/images/alert-green.png">
+                                  <img *ngIf="risk_detail.level == 'low' "  src="assets/images/alert-yellow.png">
+                                  <img *ngIf="risk_detail.level == 'medium' "  src="assets/images/alert-orange.png">
+                                  <img *ngIf="risk_detail.level == 'high' "  src="assets/images/alert-red-orange.png">
+                                  <img *ngIf="risk_detail.level == 'extreme' "  src="assets/images/alert-red.png">
+                                  
+                                </ion-avatar>
+                                <h2>{{risk_detail.name}}</h2>
+                                <p>{{risk_detail.level}}</p>
+                              </ion-item>
+                            </ion-list>
+                         
+
+                         </ion-col>        
+
+                       </ion-row>
+                       <ion-row no-line >
+                         <ion-col  *ngFor=" let risk_detail of country.risk_details  | slice:7:9; " width-50>
+                           <ion-list no-padding no-line>
+                              <ion-item>
+                                <ion-avatar item-right>
+                                  <img *ngIf="risk_detail.level == 'minimal' "  src="assets/images/alert-green.png">
+                                  <img *ngIf="risk_detail.level == 'low' "  src="assets/images/alert-yellow.png">
+                                  <img *ngIf="risk_detail.level == 'medium' "  src="assets/images/alert-orange.png">
+                                  <img *ngIf="risk_detail.level == 'high' "  src="assets/images/alert-red-orange.png">
+                                  <img *ngIf="risk_detail.level == 'extreme' "  src="assets/images/alert-red.png">
+                                  
+                                </ion-avatar>
+                                <h2>{{risk_detail.name}}</h2>
+                                <p>{{risk_detail.level}}</p>
+                              </ion-item>
+                            </ion-list>
+                         
+
+                         </ion-col>        
+
+                       </ion-row>
+                       
+                            
+                          
+                          </div>
+
+                    </div>
+                    
+                    
+                  
+          </div>
+
+         
+     
+    
+           
+           
+
+          <div (click)="toggleItem(item)" class="country-expand-footer">
+            <i [ngClass]="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+            {{ isItemShown(item) ? ' Less' : 'Show full assessment' }}
+          </div> 
+
+          </div>
+      </div>
+    </div>           
+
+      <div class="grid-view">
+        <ion-row wrap class="grid-row">
+          <ion-col width-33 class="grid-item" >
+
+            <div class="category-image">
+                <ion-card (click)="goToSection(country.categories[1].category_sections,'Political Conditions')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/political-conditions.png" title=""> </preload-image>
+               
+                 <p>Political Conditions</p>
+
+                </ion-card>
+             
+              
+            </div>
+          
+
+           
+          
+           
+             
+          </ion-col>
+          <ion-col width-33 class="grid-item" >
+
+            <div class="category-image">
+                <ion-card (click)="goToSection(country.categories[2].category_sections,'Security Issues')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/security-issues.png" title="TDAlertDemo"> </preload-image>
+               
+                 <p>Security Issues</p>
+
+                </ion-card>
+             
+              
+            </div>
+          
+
+           
+          
+           
+             
+          </ion-col>
+          <ion-col width-33 class="grid-item" >
+
+            <div class="category-image">
+                <ion-card (click)="goToSection(country.categories[3].category_sections,'Travel Logistics')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/travel-logistics.png" title="TDAlertDemo"> </preload-image>
+               
+                 <p>Travel Logistics</p>
+
+                </ion-card>
+             
+              
+            </div>
+          
+
+           
+          
+           
+             
+          </ion-col>
+          <ion-col width-33 class="grid-item" >
+
+            <div class="category-image">
+                <ion-card (click)="goToSection(country.categories[4].category_sections,'Cultural Factors')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/cultural-factors.png" title="TDAlertDemo"> </preload-image>
+               
+                 <p>Cultural Factors</p>
+
+                </ion-card>
+             
+              
+            </div>
+          
+
+           
+          
+           
+             
+          </ion-col>
+          <ion-col width-33 class="grid-item" >
+
+            <div class="category-image">
+                <ion-card (click)="goToSection(country.categories[5].category_sections,'Useful Information')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/useful-info_1.png" title="TDAlertDemo"> </preload-image>
+               
+                 <p>Useful Information</p>
+
+                </ion-card>
+             
+              
+            </div>
+          
+
+           
+          
+           
+             
+          </ion-col>
+          <ion-col width-33 class="grid-item" >
+
+            <div class="category-image">
+                <ion-card (click)="goToSection(country.categories[7].category_sections,'Health Advisory')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/health-advisory.png" title="TDAlertDemo"> </preload-image>
+               
+                 <p>Health Advisory</p>
+
+                </ion-card>
+             
+              
+            </div>
+          
+
+           
+          
+           
+             
+          </ion-col>
+        </ion-row>
+      </div>
+    
+  </div>
+</ion-content>

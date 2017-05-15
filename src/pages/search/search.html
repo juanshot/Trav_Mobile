@@ -1,0 +1,36 @@
+<ion-header>
+
+ <ion-navbar>
+    <ion-title>Country Intelligence</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content class="followers-content">
+  <ion-searchbar [(ngModel)]="searchTerm" (input)="getItems($event)" placeholder="country/city name" placeholder="Search"></ion-searchbar>
+
+    <div *ngIf="countries.length == 0" class="placeholder-image">
+        <img src="assets/images/flat-search.png" alt="">
+
+      </div>
+
+  <ion-list class="followers-list">
+    <ion-item class="list-item" *ngFor="let country of countries " >
+      <ion-thumbnail item-left>
+        <img (click)="goToFull(country)" src="{{country.country_flag}}" alt="">
+      </ion-thumbnail>
+      <h2 class="item-title" (click)="goToFull(country)" >{{country.country_name}}</h2>
+ 
+          <div *ngIf="country.city_count > 0">
+            <ion-item   *ngFor="let city of country.cities" (click)="goToCity(city,country)">
+
+                <p class="city-title">  {{city}}</p>
+                <ion-icon name="ios-arrow-forward-outline" color="light" item-right>  </ion-icon>
+             
+               
+            </ion-item>
+
+            </div>
+    
+    </ion-item>
+  </ion-list>
+</ion-content>

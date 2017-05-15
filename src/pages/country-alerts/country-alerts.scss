@@ -1,0 +1,119 @@
+country-alerts-page {
+	ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}
+
+	.title{
+
+		width: 90%;
+
+	
+
+	}
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+
+	.list-mini-content
+	{
+		background-color: color($colors, background, base);
+
+		.list-mini
+		{
+			@include layout-list-styles($theme-color-1, $white-d);
+
+
+
+			ion-list {
+				
+				.list-item
+				{
+					ion-item-divider{
+						border: none;
+						background-color: $white-b;
+						h3{
+							color: $theme-color-1;
+							font-weight: 500;
+						}
+					}
+					
+					.content-row
+					{
+						
+						.item-title{
+							
+						}
+						.checkin{
+							
+							text-align: center;
+						}
+						.severity-wrap{
+							padding-top: 10px; 
+							text-align: center;
+							.severity{
+							font-weight: bold;
+							text-transform: capitalize;
+							
+						}
+						a.severity::first-letter{
+							text-transform: capitalize;
+						}
+						.alert-date{
+							text-align: right;
+						}
+						.high{
+							color: $white-d;
+							 font-weight:  bolder;
+
+						}
+						.medium{
+							color: $white-d;
+							 font-weight:  bolder;
+						}
+						.low{
+							color: $white-d;
+							 font-weight:  bolder;
+
+						}
+
+						}
+						
+						.date-note{
+							font-size: 0.7em;
+						}
+						
+
+
+						&.one-line
+						{
+							@include align-items(center);
+
+							.item-description
+							{
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
+						}
+						&.checkin
+						{
+							@include align-items(right);
+
+							.checkin
+							{
+								
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

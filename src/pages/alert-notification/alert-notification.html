@@ -1,0 +1,36 @@
+<ion-header class="info-header">
+  <ion-toolbar>
+   <div class="title">
+            <img src="assets/images/logo-notext.png" alt=""> <span> New Alert </span> 
+      </div>
+    
+    <ion-buttons start>
+       
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="info-content" padding>
+    <div class="alert-detail">
+      <ion-card class="info-card">
+               <ion-item class="alert-content" text-wrap>
+                            <h2>{{title}}</h2>
+                          </ion-item>
+              <ion-card-content text-wrap>
+                
+                    <p>{{message}}</p>
+                              
+              </ion-card-content> 
+                    <button (click)="goToDetail(alert_id)" ion-button clear item-right icon-left>
+                      See Details
+                    </button>                  
+         </ion-card>
+        
+
+    </div>
+   
+  
+
+  
+</ion-content>
+

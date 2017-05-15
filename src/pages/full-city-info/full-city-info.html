@@ -1,0 +1,167 @@
+<ion-header>
+
+  <ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+       <div>
+      <div class="title">
+             City Intelligence
+      </div>
+        
+  <div  class="subtitle">{{city_name}} , <span>{{countryFatherInfo.country_name }} </span></div>
+         <div class="clear"></div>
+         
+    </div>
+  </ion-title>
+  <ion-buttons end>
+    <div (click)="openSearch()">
+        <ion-icon class="search-icon" name="search" color="light"></ion-icon>
+    </div>
+    
+    
+  </ion-buttons>
+</ion-toolbar>
+
+</ion-header>
+
+<ion-content class="country-content">
+  <div class="country-details" >
+    <ion-row class="country-main-data-row">
+      <ion-col (click)="goToCountry(country)" no-padding width-33>
+  <preload-image class="user-image" [ratio]="{w:1, h:1}" src="{{countryFatherInfo.country_flag}}" title=""></preload-image>
+          
+      </ion-col>
+      <ion-col  no-padding width-60>
+        <ion-row  class="overview-row">
+                      <ion-col class="overview-col-image" width-50>
+                      
+
+                            <img *ngIf="risk_rating == 'minimal' "  src="assets/images/alert-green.png">  
+                          <img *ngIf="risk_rating == 'low' "  src="assets/images/alert-yellow.png">
+                          <img *ngIf="risk_rating == 'medium' "  src="assets/images/alert-orange.png">
+                          <img *ngIf="risk_rating == 'high' "  src="assets/images/alert-red-orange.png">
+                            <img *ngIf="risk_rating == 'extreme' "  src="assets/images/alert-red.png">
+                 
+                       <div class="text-overview-col">{{risk_rating}}</div>  
+                    
+                  </ion-col>
+                  <ion-col  width-50 class="overview-col-alert">
+                    <a (click)="goToAlerts(country)">
+                      <!--div class="number">
+                             <span class="circle-alert">0</span>
+                      </div-->
+                           <div class="number-d">
+                      <div class="number-circle"><span>{{alertCount}}</span></div>
+                       </div>    
+                      <div class="text-overview-col">
+                             Alerts<br/>
+                      </div>
+                       
+                  
+                    </a>
+                  </ion-col>
+
+            </ion-row>
+        
+        <ion-row class="country-action-row">
+          <ion-col no-padding width-50 class="country-action-col " >
+            
+             <button (click)="goToContacts(country)" ion-button icon-left small full class="contact-btn" >
+                 <ion-icon name="call"></ion-icon>
+                  Contacts
+            </button>
+            
+          </ion-col>
+          <ion-col  no-padding width-50 class="country-action-col" >
+            
+             <button (click)="goToSubscribe(country)"  ion-button  icon-left small full class="subs-btn"  >
+                 <ion-icon name="ios-radio-outline"></ion-icon>
+                  Subscribe
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+    </ion-row>
+
+      <ion-col no-padding width-100>
+                    
+                    <div  [ngClass]="isItemShown(item) ? 'country-expand active' : 'country-expand inactive'">
+                      <ion-list>  
+                        <ion-item text-wrap class="risk_item">
+                          <p  [innerHtml]="section_content" class="user-description section_text"></p>
+                          </ion-item>
+                      </ion-list>
+                    
+                      </div>
+                      <div (click)="toggleItem(item)" class="country-expand-footer">
+                        <i [ngClass]="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+                        {{ isItemShown(item) ? 'Less' : 'Read More' }}
+                      </div> 
+      </ion-col>
+
+
+       <div class="grid-view">
+        <ion-row wrap class="grid-row">
+
+          <ion-col width-33 class="grid-item" >
+            <div class="category-image">
+                <ion-card (click)="goToSection(sections,'Political Conditions')" >
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/political-conditions.png"> </preload-image>
+                 <p>Political Conditions</p>
+                </ion-card>              
+            </div>
+          </ion-col>
+
+          <ion-col width-33 class="grid-item" >
+            <div class="category-image">
+                <ion-card (click)="goToSection(sections,'Security Issues')" >
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/security-issues.png"> </preload-image>
+                 <p>Security Issues</p>
+                </ion-card>
+            </div>
+          </ion-col>
+
+           <ion-col width-33 class="grid-item" >
+            <div class="category-image">
+                <ion-card (click)="goToSection(sections,'Travel Logistic')" >
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/travel-logistics.png" > </preload-image>
+                 <p>Travel Logistics</p>
+                </ion-card>
+            </div>   
+          </ion-col>
+
+          <ion-col width-33 class="grid-item" >
+            <div class="category-image">
+                <ion-card (click)="goToSection(sections,'Cultural Factors')" >
+
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/cultural-factors.png" > </preload-image>
+                 <p>Cultural Factors</p>
+                </ion-card>
+            </div>
+          </ion-col>
+
+          <ion-col width-33 class="grid-item" >
+            <div class="category-image">
+                <ion-card (click)="goToSection(sections,'Useful Information')" >
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/useful-info_1.png" > </preload-image>
+                 <p>Useful Information</p>
+                </ion-card>
+            </div>
+          </ion-col>
+
+          <ion-col width-33 class="grid-item" >
+            <div class="category-image">
+                <ion-card (click)="goToSection(sections,'Health Advisory')" >
+                   <preload-image [ratio]="{w:1, h:1}" src="assets/images/health-advisory.png" > </preload-image>
+                 <p>Health Advisory</p>
+                </ion-card>
+            </div>   
+          </ion-col>
+        </ion-row>
+      </div>
+    
+  </div>
+</ion-content>

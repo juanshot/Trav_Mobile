@@ -1,0 +1,71 @@
+
+<ion-header>
+
+  <ion-navbar >
+    <ion-title>.......</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  
+<ion-card>
+  <ion-card-header>
+    United States
+  </ion-card-header>
+  <ion-fab right top>
+    <button ion-fab>
+       <custom-icon set="fl" name="united-states" class="bigIcon" ></custom-icon>
+    </button>
+  </ion-fab>
+  
+
+  <ion-item>
+    <custom-icon set="em" name="siren" class="icon dangerIcon" item-left large ></custom-icon>
+    <ion-icon name="call"  item-left large></ion-icon>
+
+    <h2>Police</h2>
+    <p>address</p>
+  </ion-item>
+
+  <ion-item>
+    <custom-icon set="em" name="police-car" class="icon secondaryIcon" item-left large ></custom-icon>
+    <ion-icon name="call"  item-left large></ion-icon>
+
+    <h2>Fire Department</h2>
+    <p>address</p>
+  </ion-item>
+
+   <ion-item>
+    <ion-icon name="link" color="primary"  item-left large></ion-icon>
+
+    <h2>Embassy WebPage</h2>
+    <p>address</p>
+  </ion-item>
+
+  <ion-item>
+    
+    <button ion-button icon-left clear item-right (click)="changeAlertsView()">
+      <ion-icon name="arrow-dropdown"></ion-icon>
+      Alerts
+    </button>
+  </ion-item>
+
+</ion-card>
+
+<ion-card *ngIf="showAlerts">
+  <ion-card-header>
+    Alerts
+  </ion-card-header>
+
+  
+
+  <ion-item>
+
+  </ion-item>
+
+</ion-card>
+
+</ion-content>

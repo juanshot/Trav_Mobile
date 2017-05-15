@@ -1,0 +1,303 @@
+.title{
+
+		width: 90%;
+		font-size: 15px;
+
+	
+
+	}
+  .alert-head{
+    
+    max-height: 20px;
+    h2{
+      text-align: center;
+      font-size: 1.1em !important;
+    }
+    
+  }
+  .alert-message{
+      text-align: center;
+      font-weight: 500;
+      margin-top: 20px;
+    }
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+
+ion-modal { 
+    background: rgba(0,0,0,0.5);
+    
+  
+}
+
+.modal-wrapper {
+     position: absolute;
+    overflow: hidden;
+    border-radius: 25px;
+    width: 80vw;
+    max-height: 60vh;
+    min-height: 50vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 0;
+    box-shadow: 0 16px 20px rgba(0,0,0,.4);
+    background-color: #fafafa;
+    
+
+
+  }
+  
+.toast-container{
+background-color: color($colors,danger);
+color: $white-d;
+}
+$toast-width : 80%;
+.action-sheet-container{
+    
+.action-sheet-title{
+  color: $theme-color-1;
+  
+}
+button{
+  color:$theme-color-1;
+  ion-icon{
+    color:$theme-color-1;
+  }
+}
+}
+
+.list-header{
+    background-color: color($colors,light);
+    font-weight: bold; 
+
+}
+
+.list-no-border {
+
+  .item:first-child {
+    border: none;
+  }
+  .item:last-child {
+    border: none;
+  }
+
+  .item-inner {
+    border: none;
+  }
+}
+.list-full-border {
+  @extend .list-no-border;
+  margin: 10px;
+
+  .item,
+  .item:first-child,
+  .item:last-child {
+    border-bottom: 1px solid color($colors, lightPrimary);
+
+    .item-inner {
+      border: none;
+    }
+  }
+  ion-item{
+    color: $black-c;
+  }
+}
+// text style
+.bold {
+  font-weight: bold;
+}
+
+.custom-icon {
+  background-size:100% 100% !important;
+  display:inline-block;
+  vertical-align:middle;
+  min-width: 5px !important;
+
+
+  &.menu-toggle {
+    background-image: url('../assets/imgs/icons/menu-toggle.png');
+    height:18px;
+    width:18px;
+  }
+  &.bar-cart-icon {
+    height:20px;
+    width:20px;
+    background-image: url('../assets/imgs/icons/bar-cart-icon.png');
+  }
+  &.orders-icon {
+    height:36px;
+    width:36px;
+    background-image: url('../assets/imgs/icons/orders-icon.png');
+  }
+  &.addresses-icon {
+    height:36px;
+    width:36px;
+    background-image: url('../assets/imgs/icons/addresses-icon.png');
+  }
+  &.logout-icon {
+    height:36px;
+    width:36px;
+    background-image: url('../assets/imgs/icons/logout-icon.png');
+  }
+  &.wallet-icon {
+    height:36px;
+    width:36px;
+    background-image: url('../assets/imgs/icons/wallet-icon.png');
+  }
+  &.settings-icon {
+    height:36px;
+    width:36px;
+    background-image: url('../assets/imgs/icons/settings-icon.png');
+  }
+  &.reviews-icon {
+    height:36px;
+    width:36px;
+    background-image: url('../assets/imgs/icons/reviews-icon.png');
+  }
+  &.profile-edit-icon {
+    width:22px;
+    height:22px;
+    background-image: url('../assets/imgs/icons/profile-edit-icon.png');
+  }
+  &.categories-icon {
+    width:12px;
+    height:12px;
+    background-image: url('../assets/imgs/icons/categories-icon.png');
+  }
+  &.back-icon {
+    width:12px;
+    height:12px;
+    background-image: url('../assets/imgs/icons/back-arrow-icon.png');
+  }
+  &.sort-icon {
+    width:12px;
+    height:12px;
+    background-image: url('../assets/imgs/icons/sort-icon.png');
+  }
+  &.twitter-white-icon {
+    width:30px;
+    height:30px;
+    background-image: url('../assets/imgs/icons/twitter-white-icon.png');
+  }
+  &.facebook-white-icon {
+    width:30px;
+    height:30px;
+    background-image: url('../assets/imgs/icons/facebook-white-icon.png');
+  }
+  &.google-white-icon {
+    width:30px;
+    height:30px;
+    background-image: url('../assets/imgs/icons/google-plus-white-icon.png');
+  }
+  &.fashion-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/fashion-icon.png');
+  }
+  &.phones-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/phones-icon.png');
+  }
+  &.electronics-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/electronics-icon.png');
+  }
+  &.furniture-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/furniture-icon.png');
+  }
+  &.auto-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/car-icon.png');
+  }
+  &.sports-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/sports-icon.png');
+  }
+  &.real-estate-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/real-estate-icon.png');
+  }
+  &.jobs-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/jobs-icon.png');
+  }
+  &.accesories-icon {
+    width:58px;
+    height:58px;
+    background-image: url('../assets/imgs/icons/accesories-icon.png');
+  }
+  &.filter-icon {
+    width:22px;
+    height:22px;
+    background-image: url('../assets/imgs/icons/filter-white-icon.png');
+  }
+  &.calendar-icon {
+    width:17px;
+    height:18px;
+    background-image: url('../assets/imgs/icons/calendar-icon.png');
+  }
+  &.visa-icon {
+    width:28px;
+    height:10px;
+    background-image: url('../assets/imgs/icons/visa-icon.png');
+  }
+  &.mastercard-icon {
+    width:26px;
+    height:16px;
+    background-image: url('../assets/imgs/icons/mastercard-icon.png');
+  }
+  &.cvs-icon {
+    width:28px;
+    height:15px;
+    background-image: url('../assets/imgs/icons/cvs-icon.png');
+  }
+
+
+  @media screen and (min-width: 600px) {
+    &.fashion-icon,
+    &.phones-icon,
+    &.electronics-icon,
+    &.furniture-icon,
+    &.auto-icon,
+    &.sports-icon,
+    &.real-estate-icon,
+    &.jobs-icon,
+    &.accesories-icon {
+      width:100px;
+      height:100px;
+    }
+
+    &.orders-icon,
+  &.addresses-icon,
+  &.logout-icon,
+  &.wallet-icon,
+  &.settings-icon,
+  &.reviews-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  }
+}
+@import "../theme/common";
+// Include Bourbon
+@import "_bourbon";
+

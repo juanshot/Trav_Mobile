@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>AlertTraveler</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="followers-content">
+
+  <ion-item-divider class="item-title item-divider-name" text-wrap>  
+                {{sectionName}}
+          </ion-item-divider>
+    
+      <ion-list class="followers-list">
+          <div *ngFor="let section of sections; let i = index">
+
+                <ion-item-divider class="item-title"  text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}" *ngIf="section.section_text&&section.section_text!=''">  
+                      {{ section.section_name}}
+                      <ion-icon name="arrow-dropright" item-right>  </ion-icon>
+                </ion-item-divider>
+                            <ion-item *ngIf="isGroupShown(i)" class="list-item"    text-wrap>
+                    
+                              <p class="section_text" [innerHtml]="section.section_text"> </p>
+                    
+                            </ion-item>
+
+
+          </div>
+    
+  </ion-list>
+</ion-content>
+
+
+

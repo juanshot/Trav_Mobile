@@ -1,0 +1,93 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Country Intelligence</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="contact-content">
+
+	<ion-item-divider class="divider"> Important Contact Details	</ion-item-divider>
+
+	<div class="user-image-content">
+    <ion-row no-padding class="user-image-row">
+
+      <ion-col   no-padding width-25>
+        	<button (click)="showOptions(country.emergency_numbers.Ambulance)"  ion-button clear color="dark">
+					<ion-icon class="custom-icon phones-icon"></ion-icon>
+					Police
+				</button>
+
+      </ion-col>
+			
+			 <ion-col no-padding width-25>
+        	<button (click)="showOptions(country.emergency_numbers.Fire)"  ion-button clear color="dark">
+					<ion-icon class="custom-icon phones-icon"></ion-icon>
+					Fire
+				</button>
+
+      </ion-col>
+
+			<ion-col no-padding width-25>
+        	<button (click)="showOptions(country.emergency_numbers.Police)"  ion-button clear color="dark">
+					<ion-icon class="custom-icon phones-icon"></ion-icon>
+					Ambulance
+				</button>
+
+      </ion-col>
+			<ion-col (click)="showOptions(country.emergency_numbers.Ambulance)" no-padding width-25>
+        	<button  ion-button clear color="dark">
+					<ion-icon class="custom-icon phones-icon"></ion-icon>
+					Emergency
+				</button>
+
+      </ion-col>
+		
+	
+    </ion-row>
+  </div>
+	<ion-item-divider class="divider"> Aditional Contact Resources	</ion-item-divider>
+
+		<div class="user-image-content">
+    
+	
+							<ion-list *ngIf="description[1].section_name !=null " class="contact-list">
+
+										<ion-item-divider class="item-title" text-wrap>  
+													{{description[1].section_name}}
+										</ion-item-divider>
+
+										<ion-item text-wrap>
+									
+										<p [innerHtml]="description[1].section_text" >  </p>
+									
+									</ion-item>
+			
+							
+						</ion-list> 
+
+						<ion-list *ngIf="description[2].section_name !=null " class="contact-list">
+
+										<ion-item-divider class="item-title" text-wrap>  
+													{{description[2].section_name}}
+										</ion-item-divider>
+
+										<ion-item text-wrap>
+									
+										<p [innerHtml]="description[2].section_text" >  </p>
+									
+									</ion-item>
+			
+							
+						</ion-list>   
+
+  </div>
+	
+
+	
+
+
+
+</ion-content>

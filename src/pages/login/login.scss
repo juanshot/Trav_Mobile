@@ -1,0 +1,69 @@
+page-login {
+
+     
+        .text-input::-moz-placeholder {
+  
+        text-align: center;
+        color: $white-d;
+        color: color($colors,lightPrimary);
+      }
+
+      .text-input:-ms-input-placeholder {
+
+        text-align: center;
+        color: $white-d;
+        color: color($colors,lightPrimary);
+      }
+
+      .text-input::-webkit-input-placeholder {
+
+        text-align: center;
+        color: color($colors,lightPrimary);
+      }
+  .auth-bg {
+  background: url("../assets/imgs/bg2.jpg") no-repeat center;
+  background-size: 100% 100%;
+
+ .scroll-content {
+    display: flex  !important;
+
+    align-items: center;
+    justify-content: center;
+
+    .auth-content {
+      min-width: 60%;
+      border-radius: 10px;
+          .logo{
+            img{
+               max-width: 180px;
+              
+            }
+           
+              margin-top: 30px;
+              font-size: 80px;
+              text-align: center;
+             
+          }
+         
+          .list-form{
+
+              ion-item{
+                  background-color: transparent;
+                ion-input{
+
+                   margin: 0;
+                    padding-left: 0;
+                    border: none;
+                    
+
+                }
+              }
+            
+          }
+    }
+  }      
+}
+}
+page-login.ion-modal {
+   padding: 0px !important;
+}

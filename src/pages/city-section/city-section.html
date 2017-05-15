@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Country Intelligence</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="followers-content">
+    
+<ion-list class="followers-list">
+    <div>
+
+          <ion-item-divider class="item-title" text-wrap>  
+                {{section.section_heading}}
+          </ion-item-divider>
+
+          <ion-item class="list-item"  text-wrap>
+        
+          <p class="section_text" [innerHtml]="section.section_content"> </p>
+        
+        </ion-item>
+
+    </div>
+    
+  </ion-list>
+</ion-content>

@@ -1,0 +1,592 @@
+page-alert-detail {
+
+    	$contact-card-slides-height: 45%;
+	.title{
+
+		width: 90%;
+		font-size: 15px;
+
+	
+
+	}
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+	.country-expand {
+				  position: relative;
+				  width: 100%;
+				  max-height: 110px;
+				  transition: max-height 0.1s ease-out;
+				  overflow: hidden;
+				}
+
+				.country-expand.inactive:after {
+				  content: "";
+				  position: absolute;
+				  bottom: 0px;
+				  left: 0;
+				  height: 15px;
+				  width: 100%;
+				  display: block;
+				  background-image: -webkit-gradient(
+				    linear,
+				    left top,
+				    left bottom,
+				    color-stop(0, rgba(255, 255, 255, 0)),
+				    color-stop(1, rgba(255, 255, 255, 1))
+				  );
+				  background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				}
+
+				.country-expand.active {
+				  max-height: 3000px;
+				  transition: max-height 0.3s ease-out;
+				}
+
+
+				.country-expand-footer {
+				  color : $white-d;
+				  margin-top: 10px;
+				  font-size: 12	px;
+				  font-weight: bold;
+				}
+
+				.country-expand-footer i {
+				  margin-right: 10px;
+				}
+	.section_text{
+					letter-spacing: 0.2px;
+					text-align: justify;
+   				text-justify: inter-word;
+				   margin : 10px;
+				   color: $black-d;
+				}	
+			.map-overlay {
+			position: absolute;
+			top: 0px;
+			left: 0%;
+			width: 95%;
+			
+
+			.item {
+				
+			.label {
+				text-transform: capitalize;
+				font-size: 0.9em;
+				font-weight: 500;
+			}
+			}
+			ion-note{
+				font-size: 0.8em;
+				text-transform: capitalize;
+			}
+			.severity-wrap{
+							text-align: center;							
+							align-items: center;
+						.severity{
+							font-weight: bold;
+							text-transform: capitalize;
+							
+						}
+						.severity-image{
+							text-align:center;
+						}
+						
+						img{
+							margin:auto/*Fix center of image*/
+						}
+						
+			}
+		}
+
+		.map-overlay {
+			position: absolute;
+			top: 0px;
+			left: 0%;
+			width: 95%;
+			
+
+			.item {
+				
+			.label {
+				text-transform: capitalize;
+				font-size: 0.9em;
+				font-weight: 500;
+			}
+			}
+			ion-note{
+				font-size: 0.8em;
+				text-transform: capitalize;
+			}
+		}
+
+	.contact-card-content
+	{
+
+		.sebm-google-map-container {
+						height: 45vh;
+					}	
+
+		
+
+		
+		.forms-examples-segment
+		{
+			padding: 14px 0px;
+			background-color: $white;
+			@include element-shadow();
+
+			@include segment-button-styles($theme-color-2);
+
+			.segment-button
+			{
+				@include segment-text-styles($white-d);
+				font-size: 15px !important;
+			}
+		}
+		.headline{
+			font-weight: bold;
+			text-align: center;
+
+		}
+		.text-left{
+			text-align: left;
+			font-weight: bold;
+		}
+		.text-right{
+			text-align: center;
+		}
+		.category{
+			text-align: center;
+			text-transform: capitalize;
+			color: $theme-color-2!important;
+		}
+		
+		.small-item{
+			margin : 0  0 0 0;
+			padding: 0;
+
+		}
+
+		.contact-details-row
+		{
+			background: $black-a;
+			color: $white-b;
+			padding: 16px;
+
+			.contact-name
+			{
+				margin: 0px;
+				font-size: 2.2rem;
+				font-weight: 400;
+			}
+
+			.rating-col
+			{
+				display: flex;
+				@include align-items(center);
+				@include justify-content(flex-end);
+			}
+
+			.contact-rating
+			{
+				@include rating-item-styles($white-d, $theme-color-1);
+
+				.rating-item
+				{
+					box-shadow: none;
+					background: transparent;
+					margin: 2px 0px;
+					min-height: 0px;
+
+					rating {
+						padding: 0px !important;
+
+						.rating-icon {
+							height: auto;
+
+							&:last-child
+							{
+								padding-right: 0px;
+							}
+
+							ion-icon {
+								font-size: 0.9em !important;
+							}
+						}
+					}
+				}
+			}
+
+			.contact-description
+			{
+				margin: 8px 0px 0px;
+				color: $white-d;
+			}
+		}
+
+		.button-bar
+		{
+			@include display(flex);
+			margin: 6px 0px;
+
+			& > .button
+			{
+				@include segment-text-styles(color($colors, button-alt, base));
+				background-color: color($colors, button-alt, contrast);
+				margin: 0px;
+				border-radius: 0px;
+				@include flex(1);
+
+				&::after
+				{
+					content: '';
+					background-color: $white-c;
+					width: 2px;
+					@include calc(height, "100% - 20px");
+					margin: 10px 0px;
+					position: absolute;
+					top: 0px;
+					right: 0px;
+					opacity: 0.6;
+				}
+
+				&:last-child
+				{
+					&::after
+					{
+						content: initial;
+					}
+				}
+
+				ion-icon {
+					font-size: 2.2em;
+				}
+			}
+		}
+
+		.details-list
+		{
+			margin: 0px 16px 24px;
+
+			ion-item {
+				background: transparent;
+				padding: 0px;
+				border: none !important;
+
+				ion-avatar {
+					margin: 5px 10px 5px 0px;
+					min-width: 0px;
+					min-height: 0px;
+					width: 10%;
+					text-align: center;
+
+					ion-icon {
+						font-size: 1.8em;
+						color: $white-d;
+					}
+				}
+
+				.item-inner
+				{
+					padding: 22px 0px;
+					border-bottom: 0.55px solid rgba($white-d, .6) !important;
+
+					ion-label {
+						margin: 0px;
+						overflow: visible;
+						white-space: normal;
+					}
+				}
+			}
+
+			.detail-item
+			{
+				.detail-text
+				{
+					color: $white-d;
+					font-size: 1.4rem;
+					display: block;
+					margin-left: 8px;
+				}
+			}
+
+			.overview-card{
+			
+				@include basic-card-styles($white-d);
+				margin-top: 0px !important;
+		
+				.list-detail{
+						
+						ion-item{
+							//@include element-shadow();
+							.h-list{
+								text-decoration: underline;
+								font-weight: 500;
+								font-size: 0.7em;
+								text-align: center;
+								color: color($colors,"primary");
+								text-transform: capitalize;
+								margin-left: 3px;
+							}
+							.date-label{
+									font-size: 0.7em;
+									font-weight: 500;
+								}
+							.d-list{
+							
+								font-weight: 500;
+								font-size: 0.7em;
+								text-align: center;
+								color: color($colors,"primary");
+								text-transform: capitalize;
+								margin-left: 3px;
+							}
+							border: none;
+							.item-inner
+								{
+									border: none !important;
+									background: none;
+									padding: 0px;
+									color: $white-d;
+									span{
+										font-weight: 500;
+									}
+									
+
+									ion-label {
+										margin: 0px;
+
+										.item-title
+										{
+											font-size: 1.8rem;
+											letter-spacing: 1px;
+											color: $text-color;
+											margin: 0px;
+											display: inline-block;
+											word-wrap: break-word;
+										}
+
+										.item-note
+										{
+											font-size: 1.4rem;
+											letter-spacing: 1px;
+											color: $text-color;
+											margin: 0px;
+											margin-left: 4px;
+											display: inline-block;
+										}
+									}
+								}
+						}
+
+				}
+				.card-footer{
+							background-color: $white-a	;
+							
+							
+							button{
+								
+								font-size: 0.8em;
+								color: $black-c;
+								
+							}
+						}
+			}
+		
+		
+		
+		}
+					/*New layout grid for overview data*/
+			.overview-card-grid{
+			
+				@include basic-card-styles($white-d);
+				margin-top: 0px !important;
+				
+				
+				/*font-weight: bold;*/
+				text-align: center;
+
+				margin: 15px 12px 12px 12px;
+				width: calc(100% - 24px);
+				border-radius: 2px;
+				font-size: 1.4rem;
+				background: #fff;
+				ion-col{
+					padding-left:0;
+					.col-multiple-span{
+						padding-top:7px;/*adjust for categories, source, countries column because of the lower font-size*/	
+					}
+				}
+				.item-text-center
+					{
+						display: -webkit-box;
+						display: -webkit-flex;
+						display: -moz-box;
+						display: -moz-flex;
+						display: -ms-flexbox;
+						display: flex;
+						-webkit-box-align: center;
+						-ms-flex-align: center;
+						-webkit-align-items: center;
+						-moz-align-items: center;
+						align-items: center;
+						/*position: absolute;*/
+						top: 0;
+						height: 100%;
+					}
+					.col-icono{
+						-webkit-box-flex: 0;
+				-webkit-flex: 0 0 24px;
+				-moz-box-flex: 0;
+				-moz-flex: 0 0 24px;
+				-ms-flex: 0 0 24px;
+				flex: 0 0 24px;
+				max-width: 24px;
+				padding: 0
+					}					
+					.left-title{
+							color: $white-d;
+							font-size: 15px; 
+					}
+					.left-title-highlight{
+						font-weight: 500;
+					}
+						.h-list{
+								text-decoration: underline;
+								font-weight: 500;
+								font-size: 0.8em;
+								float: left;
+								color: color($colors,"primary");
+								text-transform: capitalize;
+								margin-left: 0;/*LM 3px -> 0 the lines arent aligned*/
+								
+							}
+							.date-label{
+									font-size: 0.8em;
+									font-weight: 500;
+									margin-top:3px;/*LM to align to Start Date title*/
+									float: left;									
+									color: $white-d;
+								}
+							.d-list{
+								font-weight: 500;
+								font-size: 0.8em;
+								text-align: center;
+								color: color($colors,"primary");
+								text-transform: capitalize;
+								margin-left: 0;/*LM 3px -> 0*/
+								float: left;
+							}
+	
+				ion-col[width-60]{
+					margin-left: 10px;
+				}
+
+				/*left icon in row*/
+				ion-avatar {
+					margin: 5px 5px 5px 0px;
+					min-width: 0px;
+					min-height: 0px;
+					width: 10%;
+					text-align: center;
+
+					ion-icon {
+						font-size: 2.1em;
+						color: $white-d;
+					}
+				}
+				.col-title {
+				-webkit-box-flex: 0;
+				-webkit-flex: 0 0 93px;
+				-moz-box-flex: 0;
+				-moz-flex: 0 0 93px;
+				-ms-flex: 0 0 93px;
+				flex: 0 0 93px;
+				max-width: 93px; 
+				margin-right: 5px; }
+						
+				.list-detail{
+
+							.countries-row{
+								position :relative;
+							}
+							/*LM when I put h-list insted of d-list in span this move the element 
+							.countries-col{
+								
+								 position: absolute;
+										bottom: 0;
+										right: 0;
+							}*/
+						
+						ion-item{
+							//@include element-shadow();
+						
+							border: none;
+							.item-inner
+								{
+									border: none !important;
+									background: none;
+									padding: 0px;
+									color: $white-d;
+									span{
+										font-weight: 500;									
+									}
+									
+
+									ion-label {
+										margin: 0px;
+
+										.item-title
+										{
+											font-size: 1.8rem;
+											letter-spacing: 1px;
+											color: $text-color;
+											margin: 0px;
+											display: inline-block;
+											word-wrap: break-word;
+										}
+
+										.item-note
+										{
+											font-size: 1.4rem;
+											letter-spacing: 1px;
+											color: $text-color;
+											margin: 0px;
+											margin-left: 4px;
+											display: inline-block;
+										}
+									}
+								}
+						}
+
+				}
+				.card-footer{
+							background-color: $white-a	;
+							
+							
+							button{
+								
+								font-size: 0.8em;
+								color: $black-c;
+								
+							}
+						}
+			}
+			/*end grid*/
+
+
+	}
+
+}

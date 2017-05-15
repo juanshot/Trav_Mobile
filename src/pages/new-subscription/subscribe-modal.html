@@ -1,0 +1,70 @@
+ <ion-header>
+
+    <ion-navbar>
+      <ion-title>
+            <div>
+                  <div class="title">
+                        {{country.country_name}}
+                  </div>
+                  
+            <div class="subtitle"></div>
+                  <div class="clear"></div>
+                  
+            </div>
+      </ion-title>
+        <ion-buttons end>
+        <button ion-button  (click)="closeModal()" ><ion-icon [name]="'close'" color="light" outline round ></ion-icon></button>
+    </ion-buttons>
+    </ion-navbar>
+
+    </ion-header>
+
+  <ion-content class="followers-content">
+
+
+
+      <ion-list class="followers-list">
+            
+            <ion-item class="list-item">
+                  <ion-label>Finish Date </ion-label>
+                  <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="dateFinish"></ion-datetime>
+               </ion-item>   
+ 
+        
+      </ion-list>
+
+
+
+            
+  
+              <ion-grid>
+                  <ion-row>
+                        <ion-col> Severity </ion-col><ion-col>Alert me</ion-col><ion-col>Email me</ion-col>
+                  </ion-row>
+
+
+
+                  <ion-row>
+                        <ion-col> Extreme </ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row>
+                        <ion-col> High </ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row>
+                        <ion-col> Medium </ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col>
+                  </ion-row>
+                  <ion-row>
+                        <ion-col> Low </ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col><ion-col><ion-checkbox></ion-checkbox></ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                        <ion-col> </ion-col><ion-col><button (click)="saveSettings()" ion-button>Save</button></ion-col><ion-col></ion-col>
+                  </ion-row>
+          
+
+              </ion-grid>
+           
+
+        
+    
+  </ion-content>`

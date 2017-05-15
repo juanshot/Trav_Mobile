@@ -1,0 +1,16 @@
+<ion-header>
+
+    <ion-toolbar color="primary">
+        <ion-title> Search for country</ion-title>
+    <ion-buttons end>
+        <button ion-button  (click)="closeModal()" ><ion-icon [name]="'close'" color="light" outline round ></ion-icon></button>
+    </ion-buttons>
+    </ion-toolbar>
+
+    </ion-header>
+  <ion-content padding>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+   
+
+  </ion-content>

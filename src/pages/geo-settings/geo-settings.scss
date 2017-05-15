@@ -1,0 +1,149 @@
+page-geo-settings {
+
+     .title{
+
+		width: 90%;
+
+	
+
+	}
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+
+    .options-content{
+            background-color: color($colors, background, base);
+			
+            ion-item-divider{
+                font-size: 1.4rem;
+				letter-spacing: 0.2px;
+				color: $white-d;
+				flex: 1;
+                background: transparent;
+				border-bottom-width: 5px;
+				text-transform: capitalize;
+            }
+			
+
+
+            .option-list{
+
+                padding: 0px;
+			    margin-bottom: 0px;
+			.code{
+				display: block;
+				color :$white-d;
+				font-size: 8px;
+			}
+			.title{
+				color: $theme-color-1;
+			}
+
+			ion-item {
+				border: none !important;
+				padding: 0px 20px;
+				@include element-shadow();
+                ion-datetime{
+                    font-size: 0.8em;
+                    color: $white-d;
+
+                }
+				ion-note{
+                    
+                     font-size: 0.8em;
+                    color: $white-d;
+
+                }
+
+				.item-inner
+				{
+					border: none;
+					padding: 0px;
+
+					ion-label {
+						margin: 20px 10px 20px;
+						font-size: 1.4rem;
+						line-height: 1.2;
+						letter-spacing: 0.5px;
+						color: $white-d;
+					}
+					.country_title {
+						margin: 20px 25% 20px !important;
+						color: $theme-color-1 !important;
+						font-weight: 500 !important;
+					}
+
+					ion-input input,
+					ion-textarea textarea {
+						margin: 0px;
+						margin-bottom: 8px;
+						padding: 0px;
+						width: 100%;
+						font-size: 1.6rem;
+						line-height: 1.4;
+						color: $theme-color-3;
+					}
+				}
+			}
+		
+    
+    
+    
+    
+    
+    }
+
+    .options-row{
+    
+            margin: 5px;
+			padding: 10px 10px;
+			@include element-shadow();
+			background-color: $white;
+            @include element-shadow();
+            font-size: 1.4rem;
+			letter-spacing: 0.2px;
+			color: $white-d;
+			
+
+           
+            ion-checkbox{
+                margin-left: 20px;
+            }
+        
+
+    }
+    .row-header{
+        font-weight: 500;
+    }
+
+}
+}
+.toast{
+	
+	text-align: center;
+	.toast-message{
+		background-color: $theme-color-3;
+	}
+
+}
+ion-alert{
+	
+	.alert-wrapper{
+		max-width: 90% !important;
+		max-height: 80% !important;
+		.alert-head{
+			color : $white-b;
+			background-color: $theme-color-1;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+		}
+	}
+
+}

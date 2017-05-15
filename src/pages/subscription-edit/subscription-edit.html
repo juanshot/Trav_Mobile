@@ -1,0 +1,168 @@
+ <ion-header>
+
+    <ion-navbar>
+      <ion-title>
+            <div>
+                  <div class="title">
+                        AlertTraveler
+                  </div>
+                  
+            <div *ngIf=" country_name != undefined" class="subtitle">{{country_name}}</div>
+            <div *ngIf="city_name != undefined" class="subtitle">{{city_name}}</div>
+                  <div class="clear"></div>
+                  
+            </div>
+      </ion-title>
+   
+    </ion-navbar>
+
+    </ion-header>
+
+  <ion-content class="options-content">
+
+        <ion-list class="option-list">
+                        
+                        <ion-item class="list-item">
+                              <ion-thumbnail item-left>
+                                <img  src="{{flag}}" alt="">
+                              </ion-thumbnail>
+                              <ion-label *ngIf=" country_name != undefined" class="country_title"> {{country_name}}</ion-label>  
+                              <ion-label *ngIf=" city_name != undefined" class="country_title"> {{city_name}}</ion-label>  
+                        </ion-item> 
+
+                         
+            
+                  
+                  </ion-list>
+
+
+                <ion-item-divider (click)="changeDates()"> SELECT DATE  </ion-item-divider>
+                <div *ngIf="showDates">
+                  <ion-list class="option-list">
+                        
+                        <ion-item class="list-item">
+                              <ion-label>Start Date  </ion-label>
+                              <!--ion-note *ngIf="showDate" item-right>{{myStartDate }}  </ion-note-->
+                              <ion-datetime displayFormat="MMM DD, YYYY"  pickerFormat="YYYY-MM-DD"  [(ngModel)]="myStartDate" (ngModelChange)="changeVal($event)"  min="2017" max="2017-12-31"  [disabled]="subscription.subData.created_by=='tds'"></ion-datetime>
+                              <ion-icon name="calendar" color="primary" item-right></ion-icon>
+                        </ion-item> 
+                        <ion-item class="list-item">
+                              <ion-label>End Date  </ion-label>
+                              <!--ion-note *ngIf="showDateEnd" item-right>{{myEndDate}}  </ion-note-->
+                              <ion-datetime displayFormat="MMM DD, YYYY"  pickerFormat="YYYY-MM-DD"  [(ngModel)]="myEndDate" (ngModelChange)="changeValEnd($event)"  min="2017" max="2017-12-31"  [disabled]="subscription.subData.created_by=='tds'"></ion-datetime>
+                              <ion-icon name="calendar" color="primary" item-right></ion-icon>
+                        </ion-item>  
+            
+                  
+                  </ion-list>
+
+                  </div>
+
+                  <ion-item-divider  (click)="changeSeverities()"> ALERT PREFERENCES  </ion-item-divider>
+
+                  <div *ngIf="showSeverities">
+                    
+                  <ion-row class="options-row row-header">
+                        <ion-col> Severity </ion-col><ion-col>Alert me</ion-col><ion-col>Email me</ion-col>
+                  </ion-row>
+
+                  
+
+                  <ion-row class="options-row" >
+                        <ion-col> Extreme </ion-col> <ion-col><ion-checkbox [(ngModel)]="pushExtreme"  [disabled]="subscription.subData.created_by=='tds'" checked="true"></ion-checkbox>                             
+                        
+                        </ion-col>
+                        <ion-col>
+                        <ion-checkbox [(ngModel)]="emailExtreme"  [disabled]="subscription.subData.created_by=='tds'" checked="true"></ion-checkbox>              
+
+                        </ion-col>
+                  </ion-row>
+
+                  <ion-row class="options-row" >
+                        <ion-col> High </ion-col> <ion-col>
+                              <ion-checkbox [(ngModel)]="pushHigh" [disabled]="subscription.subData.created_by=='tds'" ></ion-checkbox>              
+                             
+                        
+                        </ion-col>
+                        <ion-col>
+                        <ion-checkbox [(ngModel)]="emailHigh"   [disabled]="subscription.subData.created_by=='tds'" ></ion-checkbox>              
+
+
+                        </ion-col>
+                  </ion-row>
+
+                  <ion-row class="options-row" >
+                        <ion-col> Medium </ion-col> <ion-col>
+                              <ion-checkbox [(ngModel)]="pushMedium"  [disabled]="subscription.subData.created_by=='tds'"></ion-checkbox>              
+                            
+                        
+                        </ion-col>
+                        <ion-col>
+                        <ion-checkbox [(ngModel)]="emailMedium"  [disabled]="subscription.subData.created_by=='tds'" ></ion-checkbox>              
+
+
+                        </ion-col>
+                  </ion-row>
+
+                  <ion-row class="options-row" >
+                        <ion-col> Low </ion-col> <ion-col>
+                              <ion-checkbox  [(ngModel)]="pushLow" [disabled]="subscription.subData.created_by=='tds'" ></ion-checkbox>              
+                            
+                        
+                        </ion-col>
+                        <ion-col>
+                        <ion-checkbox [(ngModel)]="emailLow" [disabled]="subscription.subData.created_by=='tds'"></ion-checkbox>              
+                       
+
+                        </ion-col>
+
+                  </ion-row>
+
+                  <ion-row class="options-row" >
+                        <ion-col> Minimal </ion-col> <ion-col>
+                              <ion-checkbox  [(ngModel)]="pushMinimal" [disabled]="subscription.subData.created_by=='tds'" ></ion-checkbox>              
+                            
+                        
+                        </ion-col>
+                        <ion-col>
+                        <ion-checkbox [(ngModel)]="emailMinimal"  [disabled]="subscription.subData.created_by=='tds'"></ion-checkbox>              
+                       
+
+                        </ion-col>
+
+                  </ion-row>
+
+                  
+                 
+
+                  </div>
+
+                  <ion-item-divider (click)="changeCategories()"> CATEGORIES  </ion-item-divider>
+                  <div *ngIf="showCategories">
+                  <ion-list class="option-list">
+                        
+                        <ion-item class="list-item" (click)=showCategoriesAlert() >
+                              <ion-label>Select Categories  </ion-label>
+                              <ion-icon name="ios-arrow-forward-outline"  item-right></ion-icon>
+                        </ion-item> 
+
+
+                            
+                  
+                  </ion-list>
+
+                  </div>
+
+
+
+                  <ion-row *ngIf="subscription.subData.created_by!='tds'">
+                                 <ion-col> <button (click)="editSubscription()" ion-button full > Submit </button></ion-col>
+                  </ion-row>
+
+                  
+
+           
+
+        
+    
+  </ion-content>

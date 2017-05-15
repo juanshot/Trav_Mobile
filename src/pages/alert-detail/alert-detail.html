@@ -1,0 +1,369 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title >
+
+      <div class="title">
+           {{affected_range}}
+      </div>
+        
+  <div class="subtitle">{{incident_type  }}
+
+ </div>
+         <div class="clear"></div>
+         
+  </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  class="contact-card-content">
+
+  <div *ngFor="let alert of alerts">
+  
+<div *ngIf="alert.affected_area != null">
+<sebm-google-map *ngIf="alert.affected_area.length > 0"  [(latitude)]="lat" [(longitude)]="long" [(zoom)]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [streetViewControl]="false" [backgroundColor]="primary" [styles]="mapStyles"  >
+        <sebm-google-map-circle  *ngFor="let marker of alert.affected_area" [latitude]="marker.coordinates[1]" [longitude]="marker.coordinates[0]" [fillColor]="secondary" [radius]="200">
+
+        </sebm-google-map-circle>
+
+          <sebm-google-map-marker   *ngFor="let marker of alert.affected_area" (markerClick)="setCenter(marker)"  [latitude]="marker.coordinates[1]" [longitude]="marker.coordinates[0]" [iconUrl]="'assets/images/marker2.png'">
+                      <sebm-google-map-info-window  [disableAutoPan]="true">
+                      <div  (click)="mapBack(marker)" >Alert's Radius: {{marker.radius}} <ion-icon name="md-arrow-up"></ion-icon></div>
+                    </sebm-google-map-info-window>
+                </sebm-google-map-marker>
+
+
+  </sebm-google-map>
+
+  <sebm-google-map *ngIf="alert.affected_area.length == 0"  [latitude]="lat" [longitude]="long" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [streetViewControl]="false" [backgroundColor]="primary" [styles]="mapStyles"  >
+      
+
+
+  </sebm-google-map>
+  </div>
+
+  <div *ngIf="alert.affected_area == null">
+
+
+  <sebm-google-map   [latitude]="lat" [longitude]="long" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [streetViewControl]="false" [backgroundColor]="primary" [styles]="mapStyles"  >
+      
+
+
+  </sebm-google-map>
+  </div>
+
+  <ion-list class="map-overlay list-full-border">
+    <ion-item text-wrap>
+          <ion-avatar item-right>
+            <div class="severity-wrap">
+              
+              
+              <div class="severity-image"  *ngIf="alert.severities[0] == 'minimal' ">
+                  <img  src="assets/images/alert-green.png" class="minimal" alt=""> 
+                  <span>Minimal</span>
+                 
+              </div>
+              <div class="severity-image" *ngIf="alert.severities[0] == 'low' ">
+                  <img src="assets/images/alert-yellow.png" class="low" alt="">
+                  Low
+              </div>
+               <div class="severity-image" *ngIf="alert.severities[0] == 'medium' ">
+                  <img src="assets/images/alert-orange.png" class="medium" alt="">
+                  Medium
+              </div>
+
+              <div class="severity-image" *ngIf="alert.severities[0] == 'high' ">
+                
+                  <img src="assets/images/alert-red-orange.png" class="high" alt="">
+                  High
+              </div>
+
+              <div class="severity-image" *ngIf="alert.severities[0] == 'extreme' ">
+                  <img src="assets/images/alert-red.png" class="extreme" alt="">
+                  Extreme
+              </div>
+
+            </div>
+            
+          </ion-avatar>
+          <h2 class="label"> {{short_headline}} </h2> 
+        </ion-item>
+  </ion-list>
+
+  <ion-segment class="forms-examples-segment" [(ngModel)]="option">
+    <ion-segment-button value="overview" >
+      General
+    </ion-segment-button>
+    <ion-segment-button value="detail" *ngIf="this.alert.incident_description&&this.alert.incident_description!=null&&this.alert.incident_description!=''" >
+      Detail
+    </ion-segment-button>
+    <ion-segment-button value="advice"  *ngIf="this.alert.incident_advice&&this.alert.incident_advice!=null&&this.alert.incident_advice!=''">
+      Advice
+    </ion-segment-button>
+    <ion-segment-button value="analysis"  *ngIf="this.alert.incident_analysis&&this.alert.incident_analysis!=null&&this.alert.incident_analysis!=''" >
+      Analysis
+    </ion-segment-button>
+
+  </ion-segment>
+
+
+  <div [ngSwitch]="option">
+
+        <ion-list class="details-list" *ngSwitchCase="'overview'">
+
+              <!--div class="overview-card">
+                  <ion-card  >
+                            <ion-list class="list-detail"> 
+                              <ion-item class="list-item"  >
+                              <ion-avatar item-left>
+                                <ion-icon name="md-time" color="primary"></ion-icon>
+                              </ion-avatar>
+                               <ion-row>
+                                <ion-col> <span> Start Date :  </span>  </ion-col><ion-col>   <div class="date-label">{{ alert.alert_timestamp.substring(0,16)+" "+"UTC"  }}</div></ion-col>
+                              </ion-row>
+                                <ion-row>
+                                <ion-col><span>End Date : </span> </ion-col><ion-col>  <div class="date-label"> {{ alert.alert_end.substring(0,16)+" "+"UTC"  }}</div></ion-col>
+                              </ion-row>
+                            </ion-item>
+                            <ion-item class="list-item"  >
+                              <ion-avatar item-left>
+                                <ion-icon name="md-albums"></ion-icon>
+                              </ion-avatar>
+                              <ion-row>
+                                <ion-col width-40><span> Categories : </span> </ion-col><ion-col width-60   > <span class='d-list' *ngFor="let category of alert.categories">{{category}}  </span>  </ion-col>
+                              </ion-row>
+                            </ion-item>
+                            <ion-item *ngIf="alert.media_reference !=null" class="list-item"  >
+                              <ion-avatar item-left>
+                                <ion-icon name="md-link"></ion-icon>
+                              </ion-avatar>
+                              <ion-row>
+                                 <ion-col width-40><span> Sources : </span> </ion-col><ion-col width-60   > <span (click)="openInAppBrowser(alert.media_reference[0].url)" class='h-list'> {{alert.media_reference[0].source}}</span> <span (click)="openInAppBrowser(alert.media_reference[1].url)" class='h-list'> Additional Source </span> </ion-col>
+                              </ion-row>
+                            </ion-item>
+
+                            <ion-item *ngIf="alert.countries_iso3 !=undefined" class="list-item"  >
+                              <ion-avatar item-left>
+                                <ion-icon name="md-globe"></ion-icon>
+                              </ion-avatar>
+                              <ion-row>
+                               <ion-col width-60><span>Countries : </span> </ion-col><ion-col width-40   > <span class='d-list' *ngFor="let country of alert.countries_iso3">{{matchIsoName(country)}}  </span>  </ion-col>
+                              </ion-row>
+                            </ion-item>
+                          
+
+
+                            </ion-list>
+
+                            
+
+
+                            <ion-card-content>
+                              <p></p>
+                            </ion-card-content>
+                          
+                            
+
+            </ion-card>
+
+              </div-->
+              
+              <!--
+
+                Now I layout like a Grid
+                2 columns in each ion-row
+                the last column has inside another grid of two cols
+                LM
+              -->
+              <div class="overview-card-grid">
+                        <ion-grid no-padding>
+                    <!--div class="list-detail"-->
+
+                         <ion-row class="list-item" >
+                            <!-- first col of icons-->
+                            <ion-col class="col-icono" >
+                                   <span class="item-text-center" >
+                               <ion-avatar item-right >
+                                    <ion-icon name="md-time"  color="primary"></ion-icon>
+                                </ion-avatar></span>
+                                 
+                            </ion-col>
+                            <!-- second col "right side" -->
+                            <ion-col >
+                                <!--start a new grid for data title and values -->
+                                <ion-grid no-padding>
+                                    <ion-row>    
+                                        <ion-col class="col-title"  text-right>
+                                             <span class="left-title left-title-highlight" > Start Date :  </span>  
+                                        </ion-col>
+                                        <ion-col >
+                                            <span class="date-label">{{ alert.alert_timestamp.substring(0,16)+" "+"UTC" }}</span>
+                                        </ion-col>  
+                                    </ion-row>
+                                    <ion-row>
+                                            <ion-col class="col-title"  text-right >
+                                               <span class="left-title left-title-highlight"  >End Date : </span> 
+                                            </ion-col>  
+                                            <ion-col >  
+                                                <span class="date-label"> {{ alert.alert_end.substring(0,16)+" "+"UTC"  }} 
+                                                </span>
+                                            </ion-col>
+                                    </ion-row>
+                                            
+                                </ion-grid>            
+                                <!--End grid right-->
+                            </ion-col>
+                           </ion-row> 
+
+                            <ion-row class="list-item" *ngIf="alert.categories !=undefined">
+                            <!-- first col of icons-->
+                            <ion-col class="col-icono " >
+                               
+                               <ion-avatar item-right  >
+                                    <ion-icon name="md-albums"  color="primary"></ion-icon>
+                                </ion-avatar>
+                                 
+                            </ion-col>
+                            <!-- second col "right side" -->
+                            <ion-col  >
+                                <!--start a new grid for data title and values -->
+                                <ion-grid no-padding>
+                                    <ion-row>    
+                                        <ion-col class="col-title"  text-right>
+                                             <span class="left-title left-title-highlight"> Categories :  </span>  
+                                        </ion-col>
+                                        <ion-col class="col-multiple-span">
+                                            <span class='d-list' *ngFor="let category of alert.categories">{{category}}&nbsp;&nbsp;</span>
+                                        </ion-col>  
+                                    </ion-row>
+                                   
+                                            
+                                </ion-grid>            
+                                <!--End grid right-->
+                            </ion-col>
+                           </ion-row> 
+
+                           <ion-row class="list-item" *ngIf="alert.media_reference !=undefined&&alert.media_reference.length>0&&(alert.media_reference[0].url||(alert.media_reference.length>1&&alert.media_reference[1]&&alert.media_reference[1].url))" >
+                            <!-- first col of icons-->
+                            <ion-col class="col-icono "  >
+                                 
+                               <ion-avatar item-right >
+                                    <ion-icon name="md-link"  color="primary"></ion-icon>
+                                </ion-avatar>
+                                 
+                            </ion-col>
+                            <!-- second col "right side" -->
+                            <ion-col  >
+                                <!--start a new grid for data title and values -->
+                                <ion-grid no-padding>
+                                    <ion-row>    
+                                        <ion-col class="col-title"  text-right>
+                                             <span class="left-title"> Sources :  </span>  
+                                        </ion-col>
+                                        <ion-col class="col-multiple-span">
+                                              <span *ngIf="alert.media_reference[0].url !=undefined" (click)="openInAppBrowser(alert.media_reference[0].url)" class='h-list'> {{alert.media_reference[0].source}}</span>
+                                             <br *ngIf="alert.media_reference[1]!=undefined&&alert.media_reference[1].url !=undefined"><span *ngIf="alert.media_reference[1]!=undefined&&alert.media_reference[1].url !=undefined" (click)="openInAppBrowser(alert.media_reference[1].url)"  class='h-list'> Additional Source </span>                                             
+                                             
+                                        </ion-col>  
+                                    </ion-row>
+                                   
+                                            
+                                </ion-grid>            
+                                <!--End grid right-->
+                            </ion-col>
+                           </ion-row> 
+                        
+                           <ion-row class="list-item"  *ngIf="alert.countries_iso3 !=undefined" >
+                            <!-- first col of icons-->
+                            <ion-col class="col-icono " >
+                                 
+                               <ion-avatar >
+                                    <ion-icon name="md-globe"  color="primary"></ion-icon>
+                                </ion-avatar>
+                                 
+                            </ion-col>
+                            <!-- second col "right side" -->
+                            <ion-col >
+                                <!--start a new grid for data title and values -->
+                                <ion-grid no-padding>
+                                    <ion-row >    
+                                        <ion-col class="col-title"  text-right>
+                                             <span class="left-title"> Countries :  </span>  
+                                        </ion-col>
+                                        <ion-col class="col-multiple-span" >
+                                             <span class='h-list' *ngFor="let country of alert.countries_iso3" (click)="goToCountryDetail(country)">{{matchIsoName(country)}}&nbsp;&nbsp; </span>  
+                                        </ion-col>  
+                                    </ion-row>
+                                   
+                                            
+                                </ion-grid>            
+                                <!--End grid right-->
+                            </ion-col>
+                           </ion-row> 
+                    <!--/div-->      
+                </ion-grid>  
+                 </div>
+
+              </ion-list>
+
+         <ion-list class="details-list" *ngSwitchCase="'detail'">
+           
+                <ion-item class="detail-item" text-wrap>
+                  
+                  <ion-grid>
+
+                    <ion-row>
+                      <p  class="section_text"> <span class="detail-text"> {{alert.incident_description}} </span></p>
+                    </ion-row>
+                    
+
+
+                  </ion-grid>
+                  
+                </ion-item>
+               
+              </ion-list>
+
+
+              <ion-list *ngSwitchCase="'advice'">
+
+                     <ion-item class="detail-item" text-wrap>
+                       <ion-grid>
+                         <ion-row>
+                             <p  class="section_text"><span class="detail-text"> {{alert.incident_advice}} </span></p>
+
+                         </ion-row>
+                        
+                       </ion-grid>
+                     </ion-item>                            
+
+              </ion-list>
+
+                <ion-list *ngSwitchCase="'analysis'">
+
+                     <ion-item class="detail-item" text-wrap>
+                       <ion-grid>
+                         <ion-row>
+                             <p  class="section_text"><span class="detail-text"> {{alert.incident_analysis}} </span></p>
+
+                         </ion-row>
+                       
+                       </ion-grid>
+                     </ion-item>                            
+
+              </ion-list>
+
+               
+                
+                  
+                 
+    </div>
+    </div>
+
+
+
+  
+  
+
+  
+</ion-content>

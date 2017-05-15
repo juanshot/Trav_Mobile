@@ -1,0 +1,11 @@
+page-country-description {
+        .dangerIcon{
+            color: red;
+        }
+        .secondaryIcon{
+            color: color($colors,"secondary");
+        }
+        .card-header{
+            background-color: color($colors,"lightPrimary");
+        }
+}

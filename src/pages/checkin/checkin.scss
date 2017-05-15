@@ -1,0 +1,178 @@
+page-checkin {
+
+     .title{
+
+		width: 90%;
+
+	
+
+	}
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+	ion-textarea{
+			text-align: justify;
+				color: $white-d;
+				margin: 5px;
+			/*min-height: 150px;*/
+			resize: both;/*LM test if the textarea growth*/
+	}
+
+	.button_parent{
+		text-align:center;
+	}
+	.details-text{
+		color: $theme-color-1;
+	}	
+	.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner{
+		border-bottom-color: none;
+		box-shadow: none;
+	}
+    .check-content{
+       background-color: $white-c;
+	   
+
+	   .card-placeholder{
+		   min-height: 100px;
+	   }
+	   .check-card{
+				max-height: 150px;
+				border-radius: 10px !important;
+	   }
+	   .respond-card{
+		  max-height: 20vh;
+		  border-radius: 10px !important;
+	   }
+
+       .checkin-item
+		{
+			margin-top: 30px;
+
+			@include basic-card-styles($white-d);
+		
+
+			h2{
+				text-align: center;
+				color: $theme-color-1;
+				font-weight: 500; 
+
+			}
+			p{
+				text-align: justify;
+				color: $white-d;
+				margin: 5px;
+			}
+			.info-card{
+
+				border-radius: 10px !important;
+			}
+			.country-expand {
+				  position: relative;
+				  width: 100%;
+				  max-height: 110px;
+				  transition: max-height 0.1s ease-out;
+				  overflow: hidden;
+				}
+
+				.country-expand.inactive:after {
+				  content: "";
+				  position: absolute;
+				  bottom: 0px;
+				  left: 0;
+				  height: 15px;
+				  width: 100%;
+				  display: block;
+				  background-image: -webkit-gradient(
+				    linear,
+				    left top,
+				    left bottom,
+				    color-stop(0, rgba(255, 255, 255, 0)),
+				    color-stop(1, rgba(255, 255, 255, 1))
+				  );
+				  background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+				}
+
+				.country-expand.active {
+				  max-height: 3000px;
+				  transition: max-height 0.3s ease-out;
+				}
+
+
+				.country-expand-footer {
+				  color : $white-d;
+				  margin-top: 10px;
+				  font-size: 12	px;
+				  font-weight: bold;
+				}
+
+				.country-expand-footer i {
+				  margin-right: 10px;
+				}
+
+              .segment{
+				  max-height: 20vh;
+                            
+                     @include segment-button-styles($black-d);
+                            text-align: center;
+                            width: 100%;	
+                    }
+                    .segment-button{
+                        color : $white-d;
+						width: 100%;
+						min-height: 90px;
+						font-size: 1.2em;
+						ion-icon{
+							text-align: center;
+							font-size: 60px;
+							margin-top: 5px;
+						}
+
+                    }
+                    
+                    .segment-button.segment-activated {
+                        color: $theme-color-3 !important;
+                        font-weight: bolder;
+						ion-icon {
+							
+						}
+					
+
+                    }
+					/**
+					  I'm need help button
+					*/
+					.segment-button.alert-red.segment-activated {
+                        color: $high !important;
+					}
+
+			.item-title
+			{
+				margin: 0px;
+				margin-bottom: 12px;
+				padding: 0px;
+				letter-spacing: 1.1px;
+				color: $theme-color-2;
+			}
+		}
+    }
+    
+}
+.toast{
+	
+	text-align: center;
+	.toast-message{
+		background-color: $theme-color-3;
+	}
+
+}

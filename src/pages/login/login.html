@@ -1,0 +1,33 @@
+<ion-content class=" auth-bg">
+
+  <div class="auth-content">
+
+      <div padding text-center>
+        <div class="logo primary-bg">
+          <img src="assets/images/logotraveler.png" alt="">
+        </div>
+      </div>
+
+      <ion-list class="list-form" padding>
+
+        <ion-item class="from-group details">
+
+          <ion-input (input)="info()" [(ngModel)]="registrationCode" type="text" placeholder="Registration Code"></ion-input>
+            <ion-icon (click)="openInfoModal()" *ngIf="active ==  true " name="md-information-circle" color="primary" item-right  ></ion-icon>
+            <ion-icon (click)="openInfoModal()" *ngIf="active ==  false " name="ios-information-circle-outline" color="primary" item-right  ></ion-icon>
+        </ion-item>
+
+      </ion-list>
+
+      <div padding>
+        <button [disabled]="registrationCode.length < 5 "  ion-button color="primary"  block (click)="register()">
+          Register
+        </button>
+      </div>
+
+    <div padding=""></div>
+
+
+
+  </div>
+</ion-content>

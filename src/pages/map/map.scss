@@ -1,0 +1,65 @@
+    page-map {
+ 
+    .sebm-google-map-container {
+        height: 100vh;
+      }
+       .bigIcon{
+       font-size: 50px;
+     }
+     .lastestAlerts{
+         height: 10vh;
+     }
+     .small-text{
+         font-size: 12px;
+         text-align: center;
+     }
+     .icons-center{
+         text-align: center;
+     }
+     .descriptionText{
+         font-size: 12px;
+     }
+    
+     .map-overlay {
+            position: absolute;
+            top: 10px;
+            left: 4%;
+            width: 90%;
+
+            .item {
+                 background:rgba(255,255,255,0.5); 
+            .label {
+                font-size: 0.8em;
+            }
+            }
+        }
+     .item {
+      .label {
+        font-size: 0.8em;
+      }
+    }
+
+    .flag {
+    position: absolute;
+    bottom: 0;
+    right: 4%;
+    padding-bottom: 80px;
+    padding-right: 10px;
+    width: 10%;
+
+    .icon {
+      left: 5px;
+      margin-top: 5px;
+      width: 54px;
+      height: 54px;
+    }
+
+    .img {
+      position: relative;
+
+    }
+  }
+ 
+ 
+    }
+ 

@@ -1,0 +1,141 @@
+<ion-header>
+
+  <ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+    <div>
+      <div class="title">
+             AlertTraveler
+      </div>
+        
+  <div class="subtitle">Subscriptions</div>
+         <div class="clear"></div>
+         
+    </div>
+  </ion-title>
+  <ion-buttons end>
+    
+  </ion-buttons>
+</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content class="followers-content">
+
+   <ion-item-divider class=" item-divider-geo"><ion-icon name="md-locate" color="primary" item-left></ion-icon> <ion-label> My Location </ion-label>  <ion-toggle color="primary" [(ngModel)]="geoStatus" (ionChange)="changeGeoStatus()" > </ion-toggle> </ion-item-divider>
+
+
+      <ion-list   class="followers-list">
+
+         <ion-item-sliding #slidingItemGeo  *ngFor="let currentLocation of countryInfo" >
+           <ion-item  #itemGeo  (click)="open(slidingItemGeo, itemGeo)" [ngClass]=" geoStatus ? ' list-item active' : 'list-item inactive'"  item-left icon-right>
+              <ion-thumbnail item-left>
+                <img  src="{{currentLocation.flag}}" alt="">
+              </ion-thumbnail>
+           <h2 class="item-description-country-top"  >Current Location <br/> ({{currentLocation.country_name}})</h2>
+           <ion-icon name="md-arrow-dropleft" color="primary" item-right></ion-icon>
+           
+           
+        </ion-item>
+            <ion-item-options (click)="close(slidingItemGeo)" class="list-item" side="right">
+              
+                <button (click)="goToGeoSettings(currentLocation.country_name,currentLocation.flag)" ion-button color="secondary" item-right icon-left>
+                    <ion-icon name="settings"></ion-icon>
+                    Settings
+                  </button>
+                </ion-item-options>
+          
+
+
+         </ion-item-sliding >
+        
+      </ion-list>
+
+      <ion-item-divider class=" item-divider-geo"><ion-icon name="md-map" color="primary" item-left></ion-icon> <ion-label> My Itinerary </ion-label>  </ion-item-divider>
+
+       <ion-list class="followers-list">
+
+         <ion-item-sliding  #slidingItemTds   *ngFor="let subscription of subscriptionsTds "  >
+          
+         <ion-item #itemTds (click)="open(slidingItemTds,itemTds)"  class="list-item">
+           <ion-thumbnail item-left>
+                <img *ngIf="subscription.subData.country_iso != undefined" src="{{matchIsoFlag(subscription.subData.country_iso)}}">
+              </ion-thumbnail>
+
+               <h2 *ngIf="subscription.subData.city_name == undefined" class="item-description-country">{{matchIsoName(subscription.subData.country_iso)}}</h2>
+               <h2 *ngIf="subscription.subData.city_name != undefined" class="item-description-country">{{subscription.subData.city_name}} <br/><span  class="item-description-city">({{matchIsoName(subscription.subData.country_iso)}})</span></h2>
+               <ion-icon name="md-arrow-dropleft" color="primary" item-right></ion-icon>
+           
+                    
+        </ion-item>
+            <ion-item-options (click)="close(slidingItemTds)" class="" side="right">
+                  <button *ngIf="subscription.subData.created_by != 'tds' " (click)="showConfirm(subscription)" ion-button color="danger" item-right icon-left>
+                    <ion-icon name="remove"></ion-icon>
+                    Unsubscribe
+                  </button>
+                <button *ngIf="subscription.subData.city_name == undefined" (click)="goToSettings(subscription,matchIsoName(subscription.subData.country_iso),matchIsoFlag(subscription.subData.country_iso))" ion-button color="secondary" item-right icon-left>
+                    <ion-icon name="settings"></ion-icon>
+                    Settings
+                  </button>
+                  <button *ngIf="subscription.subData.city_name != undefined" (click)="goToSettingsCity(subscription,subscription.subData.city_name,matchIsoFlag(subscription.subData.country_iso))" ion-button color="secondary" item-right icon-left>
+                    <ion-icon name="settings"></ion-icon>
+                    Settings
+                  </button>
+
+            </ion-item-options>
+          
+
+
+         </ion-item-sliding >
+         
+        
+      </ion-list>
+
+       <ion-item-divider class=" item-divider-geo"><ion-icon name="md-wifi"  item-left></ion-icon> <ion-label> My Subscriptions </ion-label>  </ion-item-divider>
+
+         <ion-list class="followers-list margin-list">
+
+         <ion-item-sliding #slidingItemUser   *ngFor="let subscription of subscriptionsUser"  >
+          
+         <ion-item #itemUser (click)="openUserSub(slidingItemUser,itemUser)"   class="list-item">
+           <ion-thumbnail item-left>
+                <img *ngIf="subscription.subData.country_iso != undefined" src="{{matchIsoFlag(subscription.subData.country_iso)}}">
+              </ion-thumbnail>
+
+               <h2 *ngIf="subscription.subData.city_name == undefined" class="item-description-country">{{matchIsoName(subscription.subData.country_iso)}}</h2>
+               <h2 *ngIf="subscription.subData.city_name != undefined" class="item-description-country">{{subscription.subData.city_name}} <br/><span  class="item-description-city">({{matchIsoName(subscription.subData.country_iso)}})</span></h2>
+               <ion-icon name="md-arrow-dropleft" color="primary" item-right></ion-icon>
+    
+                    
+        </ion-item>
+            <ion-item-options (click)="close(slidingItemUser)" class="" side="right">
+                  <button *ngIf="subscription.subData.created_by != 'tds' " (click)="showConfirm(subscription)" ion-button color="danger" item-right icon-left>
+                    <ion-icon name="remove"></ion-icon>
+                    Unsubscribe
+                  </button>
+                <button *ngIf="subscription.subData.city_name == undefined" (click)="goToSettings(subscription,matchIsoName(subscription.subData.country_iso),matchIsoFlag(subscription.subData.country_iso))" ion-button color="secondary" item-right icon-left>
+                    <ion-icon name="settings"></ion-icon>
+                    Settings
+                  </button>
+                  <button *ngIf="subscription.subData.city_name != undefined" (click)="goToSettingsCity(subscription,subscription.subData.city_name,matchIsoFlag(subscription.subData.country_iso))" ion-button color="secondary" item-right icon-left>
+                    <ion-icon name="settings"></ion-icon>
+                    Settings
+                  </button>
+
+            </ion-item-options>
+          
+
+
+         </ion-item-sliding >
+         
+        
+      </ion-list>
+      
+
+</ion-content>
+  <ion-fab right bottom>
+    <button (click)="goToNewSubscription()" ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>

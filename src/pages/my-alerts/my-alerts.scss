@@ -1,0 +1,183 @@
+page-my-alerts {
+        	ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}
+
+	.title{
+
+		width: 90%;
+
+	
+
+	}
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+
+	.list-mini-content
+	{
+		background-color: color($colors, background, base);
+
+		.list-mini
+		{
+			@include layout-list-styles($theme-color-1, $white-d);
+
+
+
+			ion-list {
+				
+				.list-item
+				{
+					ion-item-divider{
+						border: none;
+						background-color: $white-b;
+						h3{
+							color: $theme-color-1;
+							font-weight: 500;
+						}
+					}
+					.content-row
+					{
+						
+						.item-title{
+							
+						}
+						.checkin{
+							
+							text-align: center;
+						}
+
+						.severity-wrap{
+
+							.avatar-image{
+
+								position: relative;
+									width: 100%;
+										display: block;
+									overflow: hidden;
+
+							}
+							margin-top: 10px;
+							text-align: center;
+							.severity{
+							font-weight: bold;
+							text-transform: capitalize;
+							
+						}
+						a.severity::first-letter{
+							text-transform: capitalize;
+						}
+						.alert-date{
+							text-align: right;
+						}
+						.high{
+							color: $white-d;
+							 font-weight:  bolder;
+
+						}
+						.medium{
+							color: $white-d;
+							 font-weight:  bolder;
+						}
+						.low{
+							color: $white-d;
+							 font-weight:  bolder;
+
+						}
+
+						}
+
+
+						
+						.severity-low{
+							color: color($colors,secondary);
+							font-weight: bold;
+							text-transform: capitalize;
+						}
+
+						a.severity-low::first-letter{
+							text-transform: capitalize;
+						}
+						.severity-minimal{
+							color: $white-d;
+							font-weight: bold;
+							text-transform: capitalize;
+						}
+
+						a.severity-minimal::first-letter{
+							text-transform: capitalize;
+						}
+						.severity-high{
+							color: color($colors,danger);
+							font-weight: bold;
+							text-transform: capitalize;
+						}
+
+						a.severity-high::first-letter{
+							text-transform: capitalize;
+						}
+
+						.severity-medium{
+							color: color($colors,third);
+							font-weight: bold;
+							text-transform: capitalize;
+						}
+
+						a.severity-medium::first-letter{
+							text-transform: capitalize;
+						}
+						.alert-date{
+							text-align: right;
+						}
+
+						
+						.high{
+							color: $theme-color-1;
+						}
+						.medium{
+							color: $theme-color-2;
+						}
+						.low{
+							color: color($colors,secondary)
+						}
+						.date-note{
+							font-size: 0.7em;
+						}
+						
+
+
+						&.one-line
+						{
+							@include align-items(center);
+
+							.item-description
+							{
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								letter-spacing: 0.5;
+							}
+						}
+						&.checkin
+						{
+							@include align-items(right);
+
+							.checkin
+							{
+								
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

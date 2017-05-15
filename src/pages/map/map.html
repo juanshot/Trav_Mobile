@@ -1,0 +1,113 @@
+<ion-header>
+
+ <ion-navbar>
+    <ion-title>Country Intelligence</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  
+
+            <sebm-google-map [latitude]="lat" [longitude]="lng"[zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [streetViewControl]="false" [backgroundColor]="primary" [styles]="mapStyles" *ngIf="showMap" >
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'assets/images/icon.png'" >
+                <sebm-google-map-info-window [disableAutoPan]="true">
+                      Your position is :<strong>{{lat}} and {{lng}}</strong>
+                    </sebm-google-map-info-window>
+                </sebm-google-map-marker>
+
+                <sebm-google-map-marker [latitude]="22.337039" [longitude]="-81.379093" [iconUrl]="'assets/images/warning.png'">
+                        <sebm-google-map-info-window [disableAutoPan]="true">
+                      <div (click)="goToAlerts()"><strong>Medium Alert</strong></div>
+                    </sebm-google-map-info-window>
+
+                </sebm-google-map-marker>
+
+                <sebm-google-map-marker [latitude]="21.112349" [longitude]="-76.984561" [iconUrl]="'assets/images/emergency.png'">
+                      <sebm-google-map-info-window [disableAutoPan]="true">
+                      <div (click)="goToAlerts()"><button color="danger" ion-button icon-left><ion-icon name="warning"></ion-icon> Critical Alert</button></div>
+                    </sebm-google-map-info-window>
+                </sebm-google-map-marker>
+
+                 <sebm-google-map-marker [latitude]="22.377681" [longitude]="-83.905948" [iconUrl]="'assets/images/emergency.png'">
+                      <sebm-google-map-info-window [disableAutoPan]="true">
+                      <div (click)="goToAlerts()"><button color="danger" ion-button icon-left><ion-icon name="warning"></ion-icon> Critical Alert</button></div>
+                    </sebm-google-map-info-window>
+                </sebm-google-map-marker>
+
+
+                 <sebm-google-map-marker [latitude]="48.8605" [longitude]="2.3376" [iconUrl]="'assets/images/emergency.png'">
+                      <sebm-google-map-info-window [disableAutoPan]="true">
+                        <ion-list> 
+                          <ion-item>
+                            <strong>Affected Areas:</strong> Paris
+                          </ion-item>
+                          <ion-item>
+                            <strong>France: </strong> Residual disruptions in Paris following earlier armed attack
+                          </ion-item>  
+                          
+                         </ion-list>
+                      <div (click)="goToAlerts()"><button color="danger" ion-button icon-left><ion-icon name="warning"></ion-icon> Check In</button></div>
+                    </sebm-google-map-info-window>
+                </sebm-google-map-marker>
+
+              
+            </sebm-google-map> 
+
+         
+
+
+            <div  *ngIf="showMap == false">
+                   <ion-card *ngFor="let alert of currentLocation.alerts">
+                                    <div *ngIf="alert.severity == 3">
+
+                                      <ion-card-content (click)="goToDetail(alert)" >
+                                        <ion-grid>
+                                          <ion-row>
+                                              <h2>{{alert.headline}}</h2>
+                                          </ion-row>
+                                          <ion-row>
+                                            <ion-col><ion-note>{{alert.type}} - <div *ngIf="alert.severity ==1"><ion-badge color="secondary">Low</ion-badge></div> <div *ngIf="alert.severity ==3"><ion-badge color="danger">Critical</ion-badge></div> </ion-note> </ion-col> <ion-col></ion-col><ion-col><ion-note>{{alert.date}}</ion-note></ion-col>
+
+                                          </ion-row>
+                                        </ion-grid>
+                                        
+                                      </ion-card-content>
+
+                                      <ion-row >
+                                        <ion-col>
+                                          <button  ion-button icon-left clear small>
+                                            <ion-icon *ngIf="alert.severity == 1" name="radio-button-on" color="secondary"></ion-icon>
+                                            <ion-icon *ngIf="alert.severity == 3" name="radio-button-on" color="secondary"></ion-icon>
+                                            <div>Active</div>
+                                          </button>
+                                        </ion-col>
+                                        <ion-col *ngIf="alert.status == 1">
+                                          <button ion-button color="primary" (click)="goToCheckin(alert)">Check in</button>
+                                        </ion-col>
+                                        <ion-col center text-center>
+                                          <ion-note>
+                                            Read 02/01/2017
+                                          </ion-note>
+                                        </ion-col>
+                                      </ion-row>
+
+                                    </div>
+                                      
+
+                                    </ion-card>
+              
+            </div> 
+<div class="flag">
+<img src="{{flag}}" alt="">
+</div>
+
+
+            
+
+
+</ion-content>
+
+

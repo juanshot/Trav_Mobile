@@ -1,0 +1,260 @@
+$followers-description-font-size: 16px;
+.actionSheetButton{
+			text-transform: uppercase;
+			font-weight: 400;
+			.ion-md-remove{
+					color: color($colors, high)
+			}
+		}
+page-settings {
+    ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}
+	.title{
+
+		width: 90%;
+
+	
+
+	}
+	.subtitle{
+		display: block;
+		font-size: 0.5em;
+		color : $white-b;
+		margin: 0px;
+
+	}
+	.clear{
+		clear: both
+	}
+
+     .followers-content
+	{
+		background-color: color($colors, background, base);
+
+		.item-divider-geo{
+			font-size: 1.2em;
+			font-weight: 500;
+			text-transform: capitalize;
+			background-color: $white-b;
+			color: $theme-color-1 ;
+			 box-shadow: 0 1px 1px rgba(0,0,0,.4);
+			 ion-icon{
+				 color: $theme-color-1;
+					 }
+		}
+
+		ion-searchbar {
+			background: transparent;
+			padding: 10px;
+			border: none;
+
+			.searchbar-input
+			{
+				border-radius: 1.5rem;
+				color: $theme-color-2;
+				background-color: $white-c;
+			}
+
+			.searchbar-search-icon {
+			  @include ios-searchbar-icon($searchbar-ios-input-search-icon-svg, $theme-color-2);
+			}
+		}
+
+		
+
+		.followers-list
+		{
+			
+			margin: 10px;
+
+			.active{
+				color: $black-d;
+
+			}
+			.inactive{
+				display:none!important;
+			}
+			
+
+			.list-item
+			{
+				
+				border-radius: 6px;
+				border: none;
+				padding: 0px;
+				
+               
+				@include element-shadow();
+
+				ion-thumbnail {
+					flex: 0 0 30%;
+			    max-width: 30%;
+					margin: 0px;
+					padding: 5px;
+				}
+				
+
+                 ion-avatar{
+
+                        flex: 0 0 40%;
+			            max-width: 40%;
+                        margin: 0px;
+                        padding: 0px;
+                        img{
+                            width: 50%;
+                            height: 50%;
+                        }
+                        
+                    }
+				 footer {
+					overflow:hidden;
+					margin-top:0px;
+
+					button {
+						color: $theme-color-1;
+						float:right;
+						margin-top: 5px;
+						font-size:1.1rem;
+						text-transform: capitalize !important;
+						ion-icon{
+								padding: 5px; 
+						}
+					}
+					
+					}
+
+                button{
+                    
+                }
+                h2{
+                
+                    text-align: center;
+                }
+
+				.item-inner
+				{
+					border: none;
+					padding: 0px;
+
+					.input-wrapper
+					{
+						padding: 8px;
+					}
+					
+                   
+					ion-label {
+						margin: 0px;
+						@include align-self(flex-start);
+
+						.item-title
+						{
+							font-size: 1.6rem;
+							font-weight: 600;
+							letter-spacing: 0.2px;
+							color: $theme-color-3;
+							margin-bottom: 7px;
+						}
+						.geo
+						{
+							
+							font-size: 0.8rem;
+							letter-spacing: 0.2px;
+							color: $theme-color-1 !important;
+							margin-bottom: 7px;
+							text-align: center !important;
+						}
+						.city-title
+						{
+							font-size: 1.2rem;
+							font-weight: 400;
+							letter-spacing: 0.2px;
+							color: $theme-color-3;
+							margin-bottom: 6px;
+						}
+					
+
+						.item-description
+						{
+							letter-spacing: 0.2px;
+							word-break: break-word;
+							color: $white-d;
+                            text-align: center;
+                            font-weight: 500;
+						}
+						.item-description-country
+						{
+							letter-spacing: 0.2px;
+							word-break: break-word;
+							color: $white-d;
+                            text-align: left;
+                            font-weight: 500;
+							padding-top: 10%;
+						}
+						.item-description-city
+						{
+							letter-spacing: 0.2px;
+							word-break: break-word;
+							color: $white-c;
+                            text-align: left;
+                            font-weight: 500;
+							padding-top: 10%;
+						}
+						.item-description-country-top
+						{
+							letter-spacing: 0.2px;
+							word-break: break-word;
+							color: $white-d;
+                            text-align: left;
+                            font-weight: 500;
+							padding-top: 10%;
+						}
+                        .subs-inner
+						{
+							letter-spacing: 0.2px;
+							word-break: break-word;
+							color: $black-c;
+                            font-weight: 500;
+                            margin-top: 15px;
+						
+						}
+					}
+
+					.relation-button
+					{
+						margin: 0px;
+					  padding: 0px 16px;
+					  height: inherit;
+						@include align-self(stretch);
+					  border-radius: 0px 6px 6px 0px;
+						background-color: $theme-color-2;
+					  width: 24%;
+
+						&.following
+						{
+							background-color: $theme-color-1;
+
+							ion-icon {
+								font-size: 4.2em;
+							}
+						}
+
+						ion-icon {
+							font-size: 2.4em;
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+
+		.margin-list{
+			margin-bottom: 15vh;
+		}
+	}
+    
+    
+    
+    
+
+}
